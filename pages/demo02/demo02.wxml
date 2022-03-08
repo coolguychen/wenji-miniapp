@@ -1,0 +1,21 @@
+<!--pages/demo02/demo02.wxml-->
+<!-- condition == true -->
+<view wx:if="{{condition}}">
+  <view class="tab-container">
+    <view
+      class="default {{type=='landmark'? 'landmark-active':''}}"
+      bindtap="handleType"
+      data-type="landmark"
+      >文学地标</view>
+    <view
+      class="default {{type=='house'? 'house-active': ''}}"
+      bindtap="handleType"
+      data-type="house"
+      >文人故居</view>
+  </view>
+</view>
+
+<!--  -->
+<view>
+  
+</view>

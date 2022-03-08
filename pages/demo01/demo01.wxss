@@ -1,0 +1,31 @@
+/* pages/demo01/demo01.wxss */
+
+.view {
+  width: 100%;
+  height: 100vh;
+}
+/* pages/search/search.wxss */
+.search{
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+
+.search input{
+  border:1px solid #ccc;
+  border-radius: 6px;
+  height: 30px;
+}
+.icons{
+  position: absolute;
+  right: 20px;
+  top:5px;
+}
+.lists{
+  text-align: center;
+  margin-top: 20px;
+  color: rgb(230, 124, 25);
+}
+
+
