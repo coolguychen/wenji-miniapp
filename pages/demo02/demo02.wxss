@@ -1,22 +1,41 @@
 /* pages/demo02/demo02.wxss */
-.tab-container {
+
+.navbar{
+  flex: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10rpx 0;
+  background: #fff;
+}
+.navbar .item{
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 80rpx;
+}
+/* 选中的颜色 */
+.navbar .item.active{
+  color: #FFCC00;
+}
+.navbar .item.active:after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6rpx;
+  background:#FFCC00;
 }
 
-.tab-container .default {
-  margin-right: 25rpx;
-  padding: 5rpx 15rpx;
+.box {
+  position: relative;
+  left: 0rpx;
+  right: 0rpx;
+  /* height: 20%; */
+  width: 100%;
+  background: rgb(248, 248, 248);
 }
 
-.expend-active {
-  color: #0ca168;
-  border-bottom: 2px solid #0ca168;
+.swipimg {
+  width: 100%;
 }
 
-.earning-active {
-  color:  #abcdef;
-  border-bottom: 2px solid  #abcdef;
-}

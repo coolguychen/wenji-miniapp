@@ -22,7 +22,8 @@ Page({
         },
         clickable: true
       }
-    ]
+    ],
+    list:[]
   },
   /**
     * 跳转到当前的位置
@@ -67,17 +68,17 @@ Page({
           {
             iconPath: "/image/marker1.png",
             id: 0,
-            latitude: 31.228725,
-            longitude: 121.475186,  
+            latitude: 31.22472,
+            longitude: 121.447588,
             width: 40,
             height: 40,
-            // label: {
-            //   content: "人民广场",
-            //   color: "#ffbf00",
-            //   fontSize: 12,
-            //   anchorX: -(0.5 * (3 * 24))/2,
-            //   textAlign: "center"
-            // }
+            label: {
+              content: "常德公寓",
+              color: "#ffbf00",
+              fontSize: 12,
+              anchorX: -(0.5 * (3 * 24))/2,
+              textAlign: "center"
+            }
           },
           {
     

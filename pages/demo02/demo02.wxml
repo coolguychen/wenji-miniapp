@@ -1,21 +1,73 @@
 <!--pages/demo02/demo02.wxml-->
-<!-- condition == true -->
+<!-- condition == true 既是地标又是故居-->
 <view wx:if="{{condition}}">
-  <view class="tab-container">
-    <view
-      class="default {{type=='landmark'? 'landmark-active':''}}"
-      bindtap="handleType"
-      data-type="landmark"
-      >文学地标</view>
-    <view
-      class="default {{type=='house'? 'house-active': ''}}"
-      bindtap="handleType"
-      data-type="house"
-      >文人故居</view>
+  <!--导航条-->
+  <view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+  </view>
+  <!--文学地标-->
+  <view hidden="{{currentTab!==0}}">
+    <view>
+      <!-- 1. 地标图片 -->
+      <!--图片轮播 -->
+      <view class="box">
+        <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
+          <block wx:for="{{imgUrls}}" wx:key="">
+              <swiper-item>
+                <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
+              </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <!-- 2. 地点简介（地址） -->
+      <view class="information" style="margin-top: 15px;">
+        <!-- 地点名字 -->
+        <view>{{name}}常德公寓</view>
+        <!-- 具体位置 -->
+        <view>{{location}}上海市静安区常德路195号</view>
+      </view>
+
+      <!-- 3. 相关文本（文学作品） -->
+      <view>
+
+      </view>
+
+        <!-- 3.1. 封面 -->
+
+        <!-- 3.2. 作品名 -->
+        <!-- 3.3. 简介 -->
   </view>
 </view>
+ 
+<!--文人故居-->
+<view hidden="{{currentTab!==1}}">
+   <!-- 1. 地标图片 -->
+    <!--图片轮播 -->
+   <!--图片轮播 -->
+   <view class="box">
+        <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
+          <block wx:for="{{imgUrls}}" wx:key="">
+              <swiper-item>
+                <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
+              </swiper-item>
+          </block>
+        </swiper>
+      </view>
+  <!-- 2. 地点简介（地址） -->
+  <view class="information" style="margin-top: 15px;">
+        <!-- 地点名字 -->
+        <view>{{name}}常德公寓</view>
+        <!-- 具体位置 -->
+        <view>{{location}}上海市静安区常德路195号</view>
+      </view>
 
-<!--  -->
+  <!-- 3. 文人在此地的作品时间轴 -->
+
+</view>
+
+</view>
+
+<!-- only landmark -->
 <view>
   
 </view>
