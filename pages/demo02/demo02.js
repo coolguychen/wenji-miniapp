@@ -5,15 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id:'',
     type: 'landmark',
     condition: 'true',
     navbar: ['文学地标','文人故居'],
     currentTab: 0,
     imgUrls:[
-      'https://tse4-mm.cn.bing.net/th/id/OIP-C.i4EBorjElD938U5rJkZdMwHaE6?w=289&h=192&c=7&r=0&o=5&dpr=1.56&pid=1.7',
-      'https://tse3-mm.cn.bing.net/th/id/OIP-C.z3rI8ovheg1WaG7OJpCkgwHaFj?w=257&h=193&c=7&r=0&o=5&dpr=1.56&pid=1.7',
-      'https://tse4-mm.cn.bing.net/th/id/OIP-C.42wwafCfSLYGEMLmyV-KDQHaE5?w=269&h=180&c=7&r=0&o=5&dpr=1.56&pid=1.7',
-
+      
     ],
     indicatorDots: true,
     color: '#ffffff',
@@ -26,7 +24,7 @@ Page({
     //swiper高度
     height: '',
     name:'',
-    location:''
+    address:''
   },
   // 图片高度自适应
   goheight: function (e) {
@@ -54,7 +52,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //根据option.id动态显示数据
+    console.log(options)
+    this.setData({
+      id: options.id
+    })
+    
+    if(id == 1) {
+      this.setData({
+        imgUrls=[
+          'https://tse4-mm.cn.bing.net/th/id/OIP-C.i4EBorjElD938U5rJkZdMwHaE6?w=289&h=192&c=7&r=0&o=5&dpr=1.56&pid=1.7',
+          'https://tse3-mm.cn.bing.net/th/id/OIP-C.z3rI8ovheg1WaG7OJpCkgwHaFj?w=257&h=193&c=7&r=0&o=5&dpr=1.56&pid=1.7',
+          'https://tse4-mm.cn.bing.net/th/id/OIP-C.42wwafCfSLYGEMLmyV-KDQHaE5?w=269&h=180&c=7&r=0&o=5&dpr=1.56&pid=1.7',
+        ],
+        address = '上海市静安区常德路195号',
+      })
+    } else if(id == 2) {
+      this.setData({
+        imgUrls=[
+          'https://bkimg.cdn.bcebos.com/pic/43a7d933c895d143d254bd7973f082025aaf074d?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U3Mg==,g_7,xp_5,yp_5/format,f_auto'
+        ],
+        address='茂名南路',
+      })
+    }
+    
   },
 
   /**

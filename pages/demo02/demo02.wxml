@@ -22,9 +22,9 @@
       <!-- 2. 地点简介（地址） -->
       <view class="information" style="margin-top: 15px;">
         <!-- 地点名字 -->
-        <view>{{name}}常德公寓</view>
+        <view>{{name}}这里显示地名</view>
         <!-- 具体位置 -->
-        <view>{{location}}上海市静安区常德路195号</view>
+        <view>{{address}}这里显示点名详细信息</view>
       </view>
 
       <!-- 3. 相关文本（文学作品） -->
@@ -56,9 +56,9 @@
   <!-- 2. 地点简介（地址） -->
   <view class="information" style="margin-top: 15px;">
         <!-- 地点名字 -->
-        <view>{{name}}常德公寓</view>
+        <view>{{name}}这里显示地名</view>
         <!-- 具体位置 -->
-        <view>{{location}}上海市静安区常德路195号</view>
+        <view>{{address}}这里显示点名详细信息</view>
       </view>
 
   <!-- 3. 文人在此地的作品时间轴 -->
