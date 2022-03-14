@@ -22,21 +22,21 @@
       <!-- 2. 地点简介（地址） -->
       <view class="information" style="margin-top: 15px;">
         <!-- 地点名字 -->
-        <view>{{name}}这里显示地名</view>
+        <view>{{name}}</view>
         <!-- 具体位置 -->
-        <view>{{address}}这里显示点名详细信息</view>
+        <view>{{address}}</view>
       </view>
 
       <!-- 3. 相关文本（文学作品） -->
-      <view>
-
-      </view>
-
+      <view class="relatedWork" style="margin-top: 15px;"> 
         <!-- 3.1. 封面 -->
 
         <!-- 3.2. 作品名 -->
+        <view>{{works}}</view>
         <!-- 3.3. 简介 -->
-  </view>
+        <view>{{quote}}</view>
+      </view>
+    </view>
 </view>
  
 <!--文人故居-->
@@ -56,9 +56,9 @@
   <!-- 2. 地点简介（地址） -->
   <view class="information" style="margin-top: 15px;">
         <!-- 地点名字 -->
-        <view>{{name}}这里显示地名</view>
+        <view>{{name}}</view>
         <!-- 具体位置 -->
-        <view>{{address}}这里显示点名详细信息</view>
+        <view>{{address}}</view>
       </view>
 
   <!-- 3. 文人在此地的作品时间轴 -->

@@ -24,7 +24,9 @@ Page({
     //swiper高度
     height: '',
     name:'',
-    address:''
+    address:'',
+    works:'',
+    quote:''
   },
   // 图片高度自适应
   goheight: function (e) {
@@ -58,24 +60,41 @@ Page({
       id: options.id
     })
     
-    if(id == 1) {
-      this.setData({
-        imgUrls=[
-          'https://tse4-mm.cn.bing.net/th/id/OIP-C.i4EBorjElD938U5rJkZdMwHaE6?w=289&h=192&c=7&r=0&o=5&dpr=1.56&pid=1.7',
-          'https://tse3-mm.cn.bing.net/th/id/OIP-C.z3rI8ovheg1WaG7OJpCkgwHaFj?w=257&h=193&c=7&r=0&o=5&dpr=1.56&pid=1.7',
-          'https://tse4-mm.cn.bing.net/th/id/OIP-C.42wwafCfSLYGEMLmyV-KDQHaE5?w=269&h=180&c=7&r=0&o=5&dpr=1.56&pid=1.7',
-        ],
-        address = '上海市静安区常德路195号',
-      })
-    } else if(id == 2) {
-      this.setData({
-        imgUrls=[
-          'https://bkimg.cdn.bcebos.com/pic/43a7d933c895d143d254bd7973f082025aaf074d?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U3Mg==,g_7,xp_5,yp_5/format,f_auto'
-        ],
-        address='茂名南路',
-      })
+    var imgUrls1 = ''
+    var name1 = ''
+    var address1 = ''
+    var works1 = ''
+    var quote1 = ''
+
+    if(options.id == '0'){
+      imgUrls1=[
+              'https://tse4-mm.cn.bing.net/th/id/OIP-C.i4EBorjElD938U5rJkZdMwHaE6?w=289&h=192&c=7&r=0&o=5&dpr=1.56&pid=1.7',
+              'https://tse3-mm.cn.bing.net/th/id/OIP-C.z3rI8ovheg1WaG7OJpCkgwHaFj?w=257&h=193&c=7&r=0&o=5&dpr=1.56&pid=1.7',
+              'https://tse4-mm.cn.bing.net/th/id/OIP-C.42wwafCfSLYGEMLmyV-KDQHaE5?w=269&h=180&c=7&r=0&o=5&dpr=1.56&pid=1.7',
+            ]
+      name1 = '常德公寓'
+      address1 = '上海市静安区常德路195号',
+      works1 = '《公寓生活记趣》'
+      quote1 = ''
     }
-    
+    else if(options.id == '1'){
+      imgUrls1=[
+        'https://bkimg.cdn.bcebos.com/pic/43a7d933c895d143d254bd7973f082025aaf074d?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2U3Mg==,g_7,xp_5,yp_5/format,f_auto'
+     ]
+      name1 = '茂名路洋房'
+      address1 = '茂名南路'
+      works1 = '《繁花》'
+      quote1 = "沪生家的地点，是茂名路洋房，父母是空军干部，积极响应社会新生事物——民办小学，为沪生报了名，因此沪生小学六年上课地点，分布于复兴中路的统间，瑞金路石库门客堂，茂名南路洋房客厅，长乐路厢房，长乐邮居委会仓库，南昌路某弄洋房汽车间，中国乒乓摇篮，巨鹿路第一小学对面老式弄堂的后间。这个范围，接近阿宝的活动地盘，但两人并不认得。"
+    }
+
+    this.setData({
+      imgUrls: imgUrls1,
+      name: name1,
+      address: address1,
+      works: works1,
+      quote: quote1
+    })
+   
   },
 
   /**
