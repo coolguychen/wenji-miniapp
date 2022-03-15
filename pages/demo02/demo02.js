@@ -26,6 +26,8 @@ Page({
     name:'',
     address:'',
     works:'',
+    picture:'',
+    preview:'',
     quote:''
   },
   // 图片高度自适应
@@ -64,6 +66,8 @@ Page({
     var name1 = ''
     var address1 = ''
     var works1 = ''
+    var picture1 = ''
+    var preview1 = ''
     var quote1 = ''
 
     if(options.id == '0'){
@@ -75,6 +79,8 @@ Page({
       name1 = '常德公寓'
       address1 = '上海市静安区常德路195号',
       works1 = '《公寓生活记趣》'
+      picture1 = ['https://img9.doubanio.com/view/subject/s/public/s1662165.jpg']
+      preview1 = '《公寓生活记趣》，是一篇家长里短的娓娓道来，为我们呈现了四十年代上海租界公寓世俗的一角，同时也展露了作者对都市生活的一往情深。'
       quote1 = ''
     }
     else if(options.id == '1'){
@@ -84,7 +90,9 @@ Page({
       name1 = '茂名路洋房'
       address1 = '茂名南路'
       works1 = '《繁花》'
-      quote1 = "沪生家的地点，是茂名路洋房，父母是空军干部，积极响应社会新生事物——民办小学，为沪生报了名，因此沪生小学六年上课地点，分布于复兴中路的统间，瑞金路石库门客堂，茂名南路洋房客厅，长乐路厢房，长乐邮居委会仓库，南昌路某弄洋房汽车间，中国乒乓摇篮，巨鹿路第一小学对面老式弄堂的后间。这个范围，接近阿宝的活动地盘，但两人并不认得。"
+      picture1 = ['https://img1.doubanio.com/view/subject/l/public/s26037307.jpg']
+      preview1 = '《繁花》是一部地域小说，人物的行走，可找到“有形”地图的对应。这也是一部记忆小说，六十年代的少年旧梦，辐射广泛，处处人间烟火的斑斓记忆，九十年代的声色犬马，是一场接一场的流水席，叙事在两个时空里频繁交替，传奇迭生，延伸了关于上海的“不一致”和错综复杂的局面，小心翼翼的嘲讽，咄咄逼人的漫画，暗藏上海的时尚与流行；昨日的遗漏，或是明天的启示……即使繁花零落，死神到来，一曲终了，人犹未散。'
+      quote1 = ''
     }
 
     this.setData({
@@ -92,6 +100,8 @@ Page({
       name: name1,
       address: address1,
       works: works1,
+      picture: picture1,
+      preview: preview1,
       quote: quote1
     })
    

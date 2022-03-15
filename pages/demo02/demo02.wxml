@@ -29,12 +29,15 @@
 
       <!-- 3. 相关文本（文学作品） -->
       <view class="relatedWork" style="margin-top: 15px;"> 
+      <!-- UI 排版还没做 -->
         <!-- 3.1. 封面 -->
-
+        <view>
+          <image src="{{picture}}"></image>
+        </view>
         <!-- 3.2. 作品名 -->
         <view>{{works}}</view>
         <!-- 3.3. 简介 -->
-        <view>{{quote}}</view>
+        <view>{{preview}}</view>
       </view>
     </view>
 </view>
