@@ -22,22 +22,24 @@
       <!-- 2. 地点简介（地址） -->
       <view class="information" style="margin-top: 15px;">
         <!-- 地点名字 -->
-        <view>{{name}}</view>
+        <view class="title">{{name}}</view>
         <!-- 具体位置 -->
-        <view>{{address}}</view>
+        <view class="text">{{address}}</view>
       </view>
 
       <!-- 3. 相关文本（文学作品） -->
-      <view class="relatedWork" style="margin-top: 15px;"> 
+      <view class="relatedWork" > 
       <!-- UI 排版还没做 -->
         <!-- 3.1. 封面 -->
-        <view>
-          <image src="{{picture}}"></image>
+        <view class="bookImage" style="box-sizing: content-box; width: 40%;">
+          <image src="{{picture}}" style="width: 100%;" mode="widthFix"></image>
         </view>
-        <!-- 3.2. 作品名 -->
-        <view>{{works}}</view>
-        <!-- 3.3. 简介 -->
-        <view>{{preview}}</view>
+        <view style="box-sizing: content-box; margin-top: 5px; width: 60%;">
+          <!-- 3.2. 作品名 -->
+          <view class="title">{{works}}</view>
+          <!-- 3.3. 简介 -->
+          <view class="text">{{preview}}</view>
+        </view> 
       </view>
     </view>
 </view>
@@ -59,9 +61,9 @@
   <!-- 2. 地点简介（地址） -->
   <view class="information" style="margin-top: 15px;">
         <!-- 地点名字 -->
-        <view>{{name}}</view>
+        <view class="title">{{name}}</view>
         <!-- 具体位置 -->
-        <view>{{address}}</view>
+        <view class="text">{{address}}</view>
       </view>
 
   <!-- 3. 文人在此地的作品时间轴 -->
