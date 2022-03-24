@@ -7,23 +7,21 @@ Page({
   data: {
     longitude:'',
     latitude:'',
-    markers:[
-    ],
+    markers: [],
     mapId:"map",
     controls:[
       {
         id: 1,
-        iconPath: '/image/nowLocation.png',
+        iconPath: '/image/marker1.png',
         position: {
           left: 15,
           top: 500,
-          width: 30,
-          height: 30
+          width: 40,
+          height: 40
         },
         clickable: true
       }
-    ],
-    list:[]
+    ]
   },
   /**
     * 跳转到当前的位置
@@ -34,6 +32,7 @@ Page({
     var mapCtx = wx.createMapContext(Id);
     mapCtx.moveToLocation();
   },
+
   /**
    * marker点击事件
    * 保留当前页面，跳转到应用内的某个页面，使用wx.navigateBack可以返回到原页面。
@@ -46,32 +45,59 @@ Page({
     })
   },
 
-  //创建标记点 -- 获取后端数据point
-  // createMyMarker(point){
-  //   let mark = {
-  //     id: point.id || 0,
-  //     name: point.name || 0,
-  //     iconPath: '/image/marker1.png',
-  //     latitude: point.lat || 0,
-  //     longitude: point.lon || 0,
-  //     width: 50,
-  //     height: 50
-  //   };
-  //   return mark;
-  // },
+  //获取mark标记点本地数据哦
+  getAllMarkers(){
+    //获取全部markers
+    let myMarker = [];
+    wx.request({
+      url: 'http://localhost:8080/main/all',
+      method: 'GET',
+      data:{
+      },
+      success (res) {
+        console.log(res.data)
+        for(var i = 0; i < res.data.data.length; i++){
+          //console.log(res.data.data[i]);
+          var item = res.data.data[i];
+          //console.log(item);
+          let mark = {
+            id: item.id ,
+            name: item.name ,
+            iconPath: '/image/marker1.png',
+            //注意经纬度要转成Float类型
+            latitude: parseFloat(item.latitude),
+            longitude: parseFloat(item.longitude),
+            width: 40,
+            height: 40,
+            label: {
+              content: item.name,
+              color: "#ffbf00",
+              fontSize: 12,
+              anchorX: -(0.5 * (3 * 24))/2,
+              textAlign: "center"
+            },
+          };
+          //console.log(mark);
+          myMarker.push(mark)
+        }
+      }
+    })
+    return myMarker;
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+    var allMarkers = that.getAllMarkers();
     //获取当前定位的经纬度信息
     wx.showLoading({
       title: '定位中',
       mask: true
     })
     wx.getLocation({
-      type:'wgs84',
+      type:'gcj02',
       altitude: 'true', //高精度定位
       //定位成功
       success: function(res) {
@@ -79,87 +105,12 @@ Page({
         var longitudee = res.longitude
         console.log(res.longitude)
         console.log(res.latitude)
-        const markers = [
-          {
-            iconPath: "/image/marker1.png",
-            id: 0,
-            latitude: 31.22472,
-            longitude: 121.447588,
-            width: 40,
-            height: 40,
-            label: {
-              content: "常德公寓",
-              color: "#ffbf00",
-              fontSize: 12,
-              anchorX: -(0.5 * (3 * 24))/2,
-              textAlign: "center"
-            },
-          },
-          {
-            iconPath: "/image/marker1.png",
-            id: 1,
-            latitude: 31.229997,
-            longitude: 121.467338,
-            width: 40,
-            height: 40,
-            label: {
-              content: "茂名路洋房",
-              color: "#ffbf00",
-              fontSize: 12,
-              anchorX: -(0.5 * (3 * 24))/2,
-              textAlign: "center"
-            },
-          },
-          {
-            iconPath: "/image/marker1.png",
-            id: 2,
-            latitude: 31.221002,
-            longitude: 121.471452,
-            width: 40,
-            height: 40,
-            label: {
-              content: "复兴中路统间",
-              color: "#ffbf00",
-              fontSize: 12,
-              anchorX: -(0.5 * (3 * 24))/2,
-              textAlign: "center"
-            }
-          },
-          {
-            iconPath: "/image/marker1.png",
-            id: 3,
-            latitude: 31.22203,
-            longitude: 121.452276,
-            width: 40,
-            height: 40,
-            label: {
-              content: "长乐路厢房",
-              color: "#ffbf00",
-              fontSize: 12,
-              anchorX: -(0.5 * (3 * 24))/2,
-              textAlign: "center"
-            }
-          },
-          {
-            iconPath: "/image/marker1.png",
-            id: 4,
-            latitude: 31.215624,
-            longitude: 121.472909,
-            width: 40,
-            height: 40,
-            label: {
-              content: "瑞金路石库门",
-              color: "#ffbf00",
-              fontSize: 12,
-              anchorX: -(0.5 * (3 * 24))/2,
-              textAlign: "center"
-            }
-          }
-        ]
+        console.log(allMarkers)
+        //赋值
         that.setData({
           longitude:parseFloat(longitudee),
           latitude: parseFloat(latitudee),
-          markers: markers
+          markers: allMarkers
         })
       },
       //定位失败
