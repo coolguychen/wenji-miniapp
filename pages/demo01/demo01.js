@@ -7,6 +7,11 @@ Page({
   data: {
     longitude:'',
     latitude:'',
+    isSelect:false,//展示类型？
+    types:['人名','地名','书名'],//搜索类型
+    // types:[{'0':'人名'},{'1':'地名'},{'2':'书名'}],
+    type:"",
+    show: false,
     markers: [],
     mapId:"map",
     controls:[
@@ -23,6 +28,14 @@ Page({
       }
     ]
   },
+
+  // 跳转到搜索页面
+  search: function () {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
+  },
+
   /**
     * 跳转到当前的位置
     */
@@ -73,7 +86,6 @@ Page({
               content: item.name,
               color: "#ffbf00",
               fontSize: 12,
-              anchorX: -(0.5 * (3 * 24))/2,
               textAlign: "center"
             },
           };
@@ -83,6 +95,28 @@ Page({
       }
     })
     return myMarker;
+  },
+  
+  //创建marker
+  createMarker(item){
+    let marker = {
+      id: item.id ,
+      name: item.name ,
+      iconPath: '/image/marker1.png',
+      //注意经纬度要转成Float类型
+      latitude: parseFloat(item.latitude),
+      longitude: parseFloat(item.longitude),
+      width: 40,
+      height: 40,
+      label: {
+        content: item.name,
+        color: "#ffbf00",
+        fontSize: 12,
+        anchorX: -(0.5 * (3 * 24))/2,
+        textAlign: "center"
+      },
+    };
+    return marker;
   },
 
   /**
@@ -138,7 +172,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    var allMarkers = that.getAllMarkers();
+    console.log(allMarkers);
   },
 
   /**
