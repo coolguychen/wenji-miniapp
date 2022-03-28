@@ -38,6 +38,13 @@ Page({
     console.log('点击了搜索')
     var type = this.data.type;
     console.log(type);
+    if(type == '') {
+      wx.showToast({
+        title: '请选择搜索类型！',
+        icon: 'none',
+        duration: 2000//持续的时间
+      })
+    }
     if (type == '人名') type = '0';
     else if (type == '地名') type = '1';
     else if (type == '书名') type = '2';
@@ -45,6 +52,7 @@ Page({
     this.search(type, e.detail.value)
     //将搜索到的marker置于地图中间
     this.centerMarker();
+    console.log(this.data.center);
   },
 
   search(type, key){
@@ -116,7 +124,7 @@ Page({
   //点击下拉框选项，选中并隐藏下拉框
   getType:function(e){
     let value = e.currentTarget.dataset.type
-    console.log(e.currentTarget.dataset)
+    // console.log(e.currentTarget.dataset)
     this.setData({
       type:value ,
       isSelect: false,
@@ -138,7 +146,7 @@ Page({
    * @param {*} e 
    */
   centerMarker: function(){
-    console(this.data.center)
+    console.log(this.data.center)
     let Id = this.data.mapId
     var mapCtx = wx.createMapContext(Id);
     mapCtx.moveToLocation();
