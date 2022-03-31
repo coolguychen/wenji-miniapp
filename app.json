@@ -1,9 +1,10 @@
 {
   "pages":[
-    "pages/demo01/demo01",
+    "pages/homepage/homepage",
     "pages/search/search",
-    "pages/demo02/demo02",
-    "pages/index/index",
+    "pages/both/both",
+    "pages/literature/literature",
+    "pages/residence/residence",
     "pages/logs/logs"
   ],
   "window":{

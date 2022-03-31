@@ -53,9 +53,29 @@ Page({
    */
   toInformation(e){
     console.log(e.markerId);
-    wx.navigateTo({
-      url: '../demo02/demo02?id=' + e.markerId,
-    })
+    let type=-1;
+    wx.request({
+      url: 'http://localhost:8080/main/type?id='+e.markerId,
+      method: 'GET',
+      success (res) {
+        console.log(res.data.data)
+        type=res.data.data
+        console.log(type)
+        if(type == 0){ //文人故居
+          wx.navigateTo({
+            url: '../residence/residence?id=' + e.markerId,
+          })
+        } else if(type == 1){ //文学地标
+          wx.navigateTo({
+            url: '../literature/literature?id=' + e.markerId,
+          })
+        } else { //both
+          wx.navigateTo({
+            url: '../both/both?id=' + e.markerId,
+          })
+        }
+      }
+    })    
   },
 
   //获取mark标记点本地数据哦
