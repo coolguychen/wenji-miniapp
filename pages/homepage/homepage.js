@@ -52,15 +52,15 @@ Page({
    * 通过url传参(e.markerId),页面demo02负责接受，根据id动态显示信息
    */
   toInformation(e){
-    console.log(e.markerId);
+    //console.log(e.markerId);
     let type=-1;
     wx.request({
       url: 'http://localhost:8080/main/type?id='+e.markerId,
       method: 'GET',
       success (res) {
-        console.log(res.data.data)
+        //console.log(res.data.data)
         type=res.data.data
-        console.log(type)
+        //console.log(type)
         if(type == 0){ //文人故居
           wx.navigateTo({
             url: '../residence/residence?id=' + e.markerId,
