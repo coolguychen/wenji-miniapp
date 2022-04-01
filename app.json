@@ -5,6 +5,7 @@
     "pages/both/both",
     "pages/literature/literature",
     "pages/residence/residence",
+    "pages/residenceDetail/residenceDetail",
     "pages/logs/logs",
     "pages/literatureDetail/literatureDetail"
   ],
