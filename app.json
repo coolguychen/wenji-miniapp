@@ -5,7 +5,8 @@
     "pages/both/both",
     "pages/literature/literature",
     "pages/residence/residence",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/literatureDetail/literatureDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -1,2 +1,41 @@
 <!--pages/literature/literature.wxml-->
-<text>pages/literature/literature.wxml</text>
+<!--文学地标-->
+<view>
+    <!-- 1. 地标图片 -->
+    <!--图片轮播 -->
+    <view class="box">
+        <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
+            <block wx:for="{{imgUrls}}" wx:key="">
+                <swiper-item>
+                    <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!-- 2. 地点简介（地址） -->
+    <view class="information" style="margin-top: 15px;">
+        <!-- 地点名字 -->
+        <view class="title">{{name}}</view>
+        <!-- 具体位置 -->
+        <view class="text">{{address}}</view>
+    </view>
+
+    <!-- 3. 相关文本（文学作品） -->
+    <view class="relatedWorks" style="display: flex; flex-direction: column;">
+        <view class="relatedWork" bindtap="toBookDetail" wx:for="{{booklist}}" wx:key="{{index}}" data-idx="{{booklist[index].id}}">
+            <!-- 3.1. 封面 -->
+            <view class="bookImage" style="box-sizing: content-box; width: 40%;">
+                <image src="{{item.picture}}" style="width: 100%;" mode="widthFix"></image>
+            </view>
+            <view style="box-sizing: content-box; margin-top: 5px; width: 60%;">
+                <!-- 3.2. 作品名 -->
+                <view class="title">{{item.name}}</view>
+                <!-- 3.3. 简介 -->
+                <view class="text">{{item.preview}}</view>
+            </view>
+        </view>
+
+    </view>
+
+
+</view>

@@ -1,0 +1,57 @@
+/* pages/literatureDetail/literatureDetail.wxss */
+
+.book {
+    height: 100%;
+    width: calc(100% + 30rpx);
+}
+
+.book-container {
+    margin-right: 30rpx;
+}
+
+.book-cover {
+    width: 100%;
+}
+
+.book-cover-image {
+    width: 100%;
+    height: 750rpx;
+}
+
+.book-introduction {
+    margin: 0 20rpx;
+    padding: 15rpx 20rpx 8rpx 15rpx;
+    position: relative;
+    top: -20px;
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    box-shadow: 0px 1px 1px #ebebeb;
+}
+
+.book-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.book-releasetime {
+    color: #888;
+    font-size: 12px;
+    text-align: left;
+}
+
+.book-content {
+    margin: 0rpx 20rpx 24rpx 24rpx;
+    font-size: 14px;
+}
+
+.book-quote {
+    color: #89bdf7;
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    line-height: 1.5;
+    font-style: oblique;
+    margin-left: 5px;
+    margin-right: 5px;
+}
