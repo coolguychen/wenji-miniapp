@@ -5,7 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+      showLoading: true,
 
+        bookId: '',
+        placeId: '',
+
+        picture: '',
+        title: '',
+        releaseTime: '',
+        preview: '',
+        bookUrl: ''
   },
 
   /**
@@ -21,7 +30,15 @@ Page({
         method: 'GET',
         data:{},
         success(res){
-          console.log(res.data);
+          let answer=res.data.data
+          console.log(answer)
+              that.setData({
+                  name: answer.name,
+                  picture: answer.picture,
+                  releaseTime: answer.release_time,
+                  preview: answer.preview,
+                  showLoading: false
+              })    
         }
     })
   },

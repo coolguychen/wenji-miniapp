@@ -33,9 +33,6 @@
   line-height: 44rpx;
   letter-spacing: 2px;
   font-size: 12px;
-  /* margin-left: 5px;
-  margin-bottom: 5px;
-  color: rgb(0, 0, 0); */
 }
 
 .information {

@@ -39,30 +39,36 @@
   width: 100%;
 }
 
-.title{
+.title {
   font-size: 20px;
   margin-left: 5px;
   margin-top: 5px;
-  margin-bottom: 5px;
-  color:rgb(0, 0, 0);
+  margin-bottom: 8px;
+  line-height: 44rpx;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
 }
 
-.text{
-  font-size: 10px;
-  margin-left: 5px;
-  margin-bottom: 5px;
-  color:rgb(0, 0, 0);
+.text {
+  color: #666;
+  margin-left: 10rpx;
+  margin-top: 20rpx;
+  margin-right: 30rpx;
+  margin-bottom: 30rpx;
+  line-height: 44rpx;
+  letter-spacing: 2px;
+  font-size: 12px;
 }
 
-.information{
-  height: 95%;
+.information {
+  height: 100%;
   width: 95%;
   margin-left: 2.5%;
-  box-shadow: 1px 1px 2px  rgba(211, 211, 211, 0.5);
+  box-shadow: 1px 1px 2px rgba(211, 211, 211, 0.5);
   border-radius: 5px;
   border: 1px rgb(226, 226, 226);
-  margin-bottom: 20px;
-  
+  /* margin-bottom: 20px; */
 }
 
 .relatedWork{
@@ -80,4 +86,110 @@
   align-items: center;
   background-color: #FAF0E6;
 }
+
+.tools{
+  margin-top: 20rpx;
+  margin-bottom: 10px;
+}
+
+.circle-img{
+  float: right;
+  margin-right: 40rpx;
+  vertical-align: middle;
+}
+
+.circle-img image{
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.share-img{
+  margin-left: 30rpx;
+  background-color: white;
+}
+
+.horizon{
+  width: 660rpx;
+  height: 2rpx;
+  background-color: #cccaca9a;
+  vertical-align: middle;
+  position: relative;
+  top: 50rpx;
+  margin: 0 auto;
+  z-index: -99;
+}
+
+
+.weui-cell-third {
+  background: #fff;
+}
+
+.weui-cell-list {
+  background: #fff;
+  margin-left: 40px;
+  margin-right: 10px;
+}
+
+.weui-cell-line {
+  /* width: 100px; */
+  margin-left: 5px;
+  border-left: 2px solid rgb(223, 170, 72);
+  height: 100px;
+  background: #fff;
+}
+
+.page-title {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.page-title .img {
+  width: 70rpx;
+  height: 70rpx;
+  margin-left: 15px;
+  display: flex;
+}
+
+.page-title .author {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.weui-cell-list .img {
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  background-color: #ffffff;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weui-cell-time {
+  float: left;
+  font-size: 16px;
+  padding-left: 15px;
+}
+
+.weui-cell-name {
+  font-size: 16px;
+  height: 23px;
+  margin-left: 15px;
+}
+
+.weui-cell-event {
+  color: #666;
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+  margin-right: 30rpx;
+  line-height: 44rpx;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+
 

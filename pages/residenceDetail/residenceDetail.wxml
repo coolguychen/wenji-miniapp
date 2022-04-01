@@ -1,2 +1,27 @@
 <!--pages/residenceDetail/residenceDetail.wxml-->
-<text>pages/residenceDetail/residenceDetail.wxml</text>
+<block wx:if="{{showLoading}}">
+    <view class="page-loading">
+        <text class="weui-loading" />
+        <text class="loading-text">玩命加载中</text>
+    </view>
+</block>
+<block wx:else>
+    <scroll-view class="book" scroll-y="true">
+        <view class="book-container">
+            <view class="book-cover">
+                <image class="book-cover-image" src="{{picture}}" mode="widthFix"></image>
+            </view>
+            <view class="book-introduction">
+                <view class="book-title">
+                    <text>{{name}}</text>
+                </view>
+                <view class="book-releasetime">
+                    <text>发表时间：{{releaseTime}}</text>
+                </view>
+            </view>
+            <view class="book-content">
+                <text>{{preview}}</text>
+            </view>
+        </view>
+    </scroll-view>
+</block>
