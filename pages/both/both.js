@@ -23,9 +23,11 @@ Page({
     address: '', //具体地址信息
     authorName: '', //文人故居-作者名
     authorPicture: '', //文人故居-作者图片
-    books: '' //文人故居-该作者在此地发表的书列表
+    books: '', //文人故居-该作者在此地发表的书列表
+
+    booklist: '' //文学地标-该地标相关文学作品的列表
   },
-  
+
   // 图片高度自适应
   goheight: function (e) {
     var width = wx.getSystemInfoSync().windowWidth
@@ -46,6 +48,60 @@ Page({
     this.setData({
       currentTab: e.currentTarget.dataset.idx
     })
+    var that = this
+    console.log('currentTab:'+this.data.currentTab)
+    if (this.data.currentTab == 0) { //tab为文学地标
+      wx.request({
+        url: 'http://localhost:8080/main/literature?id='+ this.data.id,
+        method: 'GET',
+        success(res) {
+          console.log(res.data.data)
+          let item = res.data.data
+          var imgUrls1 = [item.picture]
+          console.log(imgUrls1)
+          var name1 = item.name
+          var address1 = item.address
+          var booklist1 = item.books
+
+          that.setData({
+            imgUrls: imgUrls1,
+            name: name1,
+            address: address1,
+            booklist: booklist1
+          })
+
+          console.log(booklist1)
+          console.log(that.data.booklist)
+
+        }
+      })
+    } else if (this.data.currentTab == 1) { //文人故居的tab
+      console.log(this.data.id)
+      wx.request({
+        url: 'http://localhost:8080/main/residence?id=' + this.data.id,
+        method: 'GET',
+        data: {},
+        success(res) {
+          console.log(res.data.data);
+          var item = res.data.data;
+          var imgUrls = [item.picture];
+          var name = item.name; //地名
+          var address = item.address; //具体地址信息
+          var authorName = item.authorName;
+          // var authorPicture = ''; 暂无
+          var books = item.books //书列表
+          that.setData({
+            imgUrls: imgUrls, //地点图片列表
+            name: name, //地点名字
+            address: address, //地点具体位置
+            authorName: authorName, //作家名
+            books: books, //该作家在此地发表的书籍
+          })
+        }
+      })
+    }
+
+
   },
 
   //点击时间轴上的书籍，跳转到书籍详情页。
@@ -56,6 +112,18 @@ Page({
     wx.navigateTo({
       //传入bookID
       url: '../residenceDetail/residenceDetail?bookID=' + bookID,
+    })
+  },
+
+  //点击文学地标对应书籍列表中的书籍，跳转到书籍详情
+  toBookDetail: function (e) {
+    console.log(e)
+    let bookId = e.currentTarget.dataset.idx
+    let placeId = this.data.id
+    console.log(bookId)
+    console.log(placeId)
+    wx.navigateTo({
+      url: '../literatureDetail/literatureDetail?bookId=' + bookId + '&placeId=' + placeId
     })
   },
 
@@ -78,26 +146,28 @@ Page({
     var id = options.id;
 
     wx.request({
-      url: 'http://localhost:8080/main/residence?id=' + id,
+      url: 'http://localhost:8080/main/literature?id=' + options.id,
       method: 'GET',
-      data: {},
       success(res) {
-        console.log(res.data.data);
-        var item = res.data.data;
-        var imgUrls = [item.picture];
-        var name = item.name; //地名
-        var address = item.address; //具体地址信息
-        var authorName = item.authorName;
-        // var authorPicture = ''; 暂无
-        var books = item.books //书列表
+        console.log(res.data.data)
+        let item = res.data.data
+        var imgUrls1 = [item.picture]
+        console.log(imgUrls1)
+        var name1 = item.name
+        var address1 = item.address
+        var booklist1 = item.books
+
         that.setData({
-          id: id,//地点id
-          imgUrls: imgUrls,//地点图片列表
-          name: name,//地点名字
-          address: address,//地点具体位置
-          authorName: authorName,//作家名
-          books: books,//该作家在此地发表的书籍
+          id: id,
+          imgUrls: imgUrls1,
+          name: name1,
+          address: address1,
+          booklist: booklist1
         })
+
+        console.log(booklist1)
+        console.log(that.data.booklist)
+
       }
     })
   },
@@ -106,7 +176,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.setData({ boxStyle: 'height: 100px' })
+    this.setData({
+      boxStyle: 'height: 100px'
+    })
   },
 
   /**

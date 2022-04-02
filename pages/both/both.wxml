@@ -6,17 +6,11 @@
 </view>
 <!--文学地标-->
 <view hidden="{{currentTab!==0}}">
-    
-</view>
- 
-<!--文人故居-->
-<view hidden="{{currentTab!==1}}">
-  <view class="residence">
   <!-- 1. 地标图片 -->
   <!--图片轮播 -->
   <view class="box">
     <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
-      <block wx:for="{{imgUrls}}" wx:key="id">
+      <block wx:for="{{imgUrls}}" wx:key="">
         <swiper-item>
           <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
         </swiper-item>
@@ -28,40 +22,76 @@
     <!-- 地点名字 -->
     <view class="title">{{name}}</view>
     <!-- 具体位置 -->
-    <view class="text">{{address}}</view> 
+    <view class="text">{{address}}</view>
   </view>
-
-  <view class="tool" style="width: 750rpx; height: 100rpx; display: block; box-sizing: border-box">
-    <view class="circle-img">
-      <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
-      <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
-      <image class="share-img" catchtap='goto' src="/image/导航.png"></image>
-    </view>
-    <view class="horizon"></view>
-  </view>
-
- 
-  <!-- 3. 文人在此地的作品时间轴 -->
-  <view class='weui-cell-third'>
-    <view class="page-title">
-      <image class='img' src="/image/write.svg" />
-      <text class="author">{{authorName}}</text>
-    </view>
-  </view>
-  <block wx:for="{{books}}" wx:key="*this">
-    <view class='weui-cell-list'>
-      <view class="img">
-        <image class="minimg" mode="asceptFit" src="/image/书籍.svg" />
+  <!-- 3. 相关文本（文学作品） -->
+  <view class="relatedWorks" style="display: flex; flex-direction: column;">
+    <view class="relatedWork" bindtap="toBookDetail" wx:for="{{booklist}}" wx:key="{{index}}" data-idx="{{booklist[index].id}}">
+      <!-- 3.1. 封面 -->
+      <view class="bookImage" style="box-sizing: content-box; width: 40%;">
+        <image src="{{item.picture}}" style="width: 100%;" mode="widthFix"></image>
       </view>
-      <view class='weui-cell-line'>
-        <view class='weui-cell-time'>{{item.release_time}}年</view>
-        <!-- 通过自定义属性传递参数 -->
-        <view class='weui-cell-name' bindtap="goBook" data-bookid = "{{item.id}}">《{{item.name}}》</view>
-        <view class='weui-cell-event'>{{item.preview}}</view>
+      <view style="box-sizing: content-box; margin-top: 5px; width: 60%;">
+        <!-- 3.2. 作品名 -->
+        <view class="title">{{item.name}}</view>
+        <!-- 3.3. 简介 -->
+        <view class="text">{{item.preview}}</view>
       </view>
     </view>
-  </block>
-</view>
+  </view>
 </view>
 
+<!--文人故居-->
+<view hidden="{{currentTab!==1}}">
+  <view class="residence">
+    <!-- 1. 地标图片 -->
+    <!--图片轮播 -->
+    <view class="box">
+      <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
+        <block wx:for="{{imgUrls}}" wx:key="id">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!-- 2. 地点简介（地址） -->
+    <view class="information" style="margin-top: 15px;">
+      <!-- 地点名字 -->
+      <view class="title">{{name}}</view>
+      <!-- 具体位置 -->
+      <view class="text">{{address}}</view>
+    </view>
 
+    <view class="tool" style="width: 750rpx; height: 100rpx; display: block; box-sizing: border-box">
+      <view class="circle-img">
+        <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
+        <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
+        <image class="share-img" catchtap='goto' src="/image/导航.png"></image>
+      </view>
+      <view class="horizon"></view>
+    </view>
+
+
+    <!-- 3. 文人在此地的作品时间轴 -->
+    <view class='weui-cell-third'>
+      <view class="page-title">
+        <image class='img' src="/image/write.svg" />
+        <text class="author">{{authorName}}</text>
+      </view>
+    </view>
+    <block wx:for="{{books}}" wx:key="*this">
+      <view class='weui-cell-list'>
+        <view class="img">
+          <image class="minimg" mode="asceptFit" src="/image/书籍.svg" />
+        </view>
+        <view class='weui-cell-line'>
+          <view class='weui-cell-time'>{{item.release_time}}年</view>
+          <!-- 通过自定义属性传递参数 -->
+          <view class='weui-cell-name' bindtap="goBook" data-bookid="{{item.id}}">《{{item.name}}》</view>
+          <view class='weui-cell-event'>{{item.preview}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
