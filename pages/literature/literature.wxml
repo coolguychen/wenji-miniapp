@@ -29,7 +29,7 @@
             </view>
             <view style="box-sizing: content-box; margin-top: 5px; width: 60%;">
                 <!-- 3.2. 作品名 -->
-                <view class="title">{{item.name}}</view>
+                <view class="book-title">{{item.name}}</view>
                 <!-- 3.3. 简介 -->
                 <view class="text">{{item.preview}}</view>
             </view>

@@ -5,16 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-      showLoading: true,
+    showLoading: true,
 
-        bookId: '',
-        placeId: '',
+    bookId: '',
+    placeId: '',
 
-        picture: '',
-        title: '',
-        releaseTime: '',
-        preview: '',
-        bookUrl: ''
+    picture: '',
+    title: '',
+    releaseTime: '',
+    preview: '',
+    bookUrl: ''
   },
 
   /**
@@ -26,20 +26,20 @@ Page({
     console.log(options);
     var bookID = options.bookID;
     wx.request({
-        url: 'http://localhost:8080/main/book/residence?id=' + bookID,
-        method: 'GET',
-        data:{},
-        success(res){
-          let answer=res.data.data
-          console.log(answer)
-              that.setData({
-                  name: answer.name,
-                  picture: answer.picture,
-                  releaseTime: answer.release_time,
-                  preview: answer.preview,
-                  showLoading: false
-              })    
-        }
+      url: 'http://localhost:8080/main/book/residence?id=' + bookID,
+      method: 'GET',
+      data: {},
+      success(res) {
+        let answer = res.data.data
+        console.log(answer)
+        that.setData({
+          name: answer.name,
+          picture: answer.picture,
+          releaseTime: answer.release_time,
+          preview: answer.preview,
+          showLoading: false
+        })
+      }
     })
   },
 

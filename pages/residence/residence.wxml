@@ -42,10 +42,10 @@
       <view class="img">
         <image class="minimg" mode="asceptFit" src="/image/书籍.svg" />
       </view>
-      <view class='weui-cell-line'>
+      <view class='weui-cell-line' bindtap="goBook" data-bookid = "{{item.id}}">
         <view class='weui-cell-time'>{{item.release_time}}年</view>
         <!-- 通过自定义属性传递参数 -->
-        <view class='weui-cell-name' bindtap="goBook" data-bookid = "{{item.id}}">《{{item.name}}》</view>
+        <view class='weui-cell-name'>《{{item.name}}》</view>
         <view class='weui-cell-event'>{{item.preview}}</view>
       </view>
     </view>
