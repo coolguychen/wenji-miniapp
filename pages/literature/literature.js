@@ -63,7 +63,7 @@ Page({
             success(res) {
                 console.log(res.data.data)
                 let item = res.data.data
-                imgUrls1 = [item.picture]
+                imgUrls1 = item.picture
                 console.log(imgUrls1)
                 name1 = item.name
                 address1 = item.address

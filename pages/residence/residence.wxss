@@ -45,28 +45,28 @@
   /* margin-bottom: 20px; */
 }
 
-.tools{
+.tools {
   margin-top: 20rpx;
   margin-bottom: 10px;
 }
 
-.circle-img{
+.circle-img {
   float: right;
   margin-right: 40rpx;
   vertical-align: middle;
 }
 
-.circle-img image{
+.circle-img image {
   width: 90rpx;
   height: 90rpx;
 }
 
-.share-img{
+.share-img {
   margin-left: 30rpx;
   background-color: white;
 }
 
-.horizon{
+.horizon {
   width: 660rpx;
   height: 2rpx;
   background-color: #cccaca9a;
@@ -92,7 +92,7 @@
   /* width: 100px; */
   margin-left: 5px;
   border-left: 2px solid rgb(223, 170, 72);
-  height: 100px;
+  height: auto;
   background: #fff;
 }
 
@@ -142,7 +142,8 @@
 .weui-cell-event {
   color: #666;
   margin-left: 30rpx;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
   margin-right: 30rpx;
   line-height: 44rpx;
   letter-spacing: 2px;

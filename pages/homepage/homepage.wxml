@@ -1,10 +1,10 @@
 <!--pages/demo01/demo01.wxml-->
 
 <view class='page_row' bindtap="suo">
-    <view class="search">
+    <view class="search" bindtap='search'>
       <view class="df search_arr">
         <icon class="searchcion" size='16' type='search'></icon>
-        <input class="sousuo" disabled placeholder="搜索" bindtap='search'/>
+        <input class="sousuo" disabled placeholder="搜索" />
       </view>
     </view>
 </view>

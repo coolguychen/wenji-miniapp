@@ -19,8 +19,10 @@ Page({
       height: '',
       name:'', //地名
       address:'', //具体地址信息
-      authorName:'',
-      authorPicture:'',
+      authorName:'', //作者名字
+      authorName1: '', //作者笔名
+      authorPicture:'', //作者图片
+      authorIntros:'', //作者简介
       books:'' //书列表
   },
   // 图片高度自适应
@@ -74,7 +76,7 @@ Page({
         success(res){
             console.log(res.data.data);
             var item = res.data.data;
-            var imgUrls = [item.picture];
+            var imgUrls = item.picture;
             var name = item.name; //地名
             var address = item.address; //具体地址信息
             var authorName = item.authorName;

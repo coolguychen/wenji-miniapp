@@ -100,12 +100,12 @@ Page({
             //注意经纬度要转成Float类型
             latitude: parseFloat(item.latitude),
             longitude: parseFloat(item.longitude),
-            width: 40,
-            height: 40,
+            width: 30,
+            height: 30,
             label: {
               content: item.name,
               color: "#ffbf00",
-              fontSize: 12,
+              fontSize: 10,
               textAlign: "center"
             },
           };

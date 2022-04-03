@@ -57,7 +57,7 @@ Page({
         success(res) {
           console.log(res.data.data)
           let item = res.data.data
-          var imgUrls1 = [item.picture]
+          var imgUrls1 = item.picture
           console.log(imgUrls1)
           var name1 = item.name
           var address1 = item.address
@@ -84,7 +84,7 @@ Page({
         success(res) {
           console.log(res.data.data);
           var item = res.data.data;
-          var imgUrls = [item.picture];
+          var imgUrls = item.picture;
           var name = item.name; //地名
           var address = item.address; //具体地址信息
           var authorName = item.authorName;

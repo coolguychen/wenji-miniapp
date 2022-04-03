@@ -1,6 +1,6 @@
 /* pages/search/search.wxss */
 /* pages/search/search.wxss */
-.search{
+.search {
   position: relative;
   margin-left: 10px;
   margin-right: 20px;
@@ -9,53 +9,51 @@
   flex-direction: row;
 }
 
-.search input{
+.search input {
   flex: 4;
-  border:1px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 6px;
   height: 30px;
 }
-.search button{
-  flex: 1;
-}
-.icons{
-  position: absolute;
-  right: 20px;
-  top:5px;
-}
-.lists{
+
+.lists {
   text-align: center;
   margin-top: 20px;
   color: rgb(230, 124, 25);
 }
 
-.sanjiao{
-  width:50rpx;
+.sanjiao {
+  width: 50rpx;
   height: 50rpx;
   margin-left: 20rpx;
   margin-top: 10rpx;
-  transition: 0.5s;/* 选转图片过渡 */
+  transition: 0.5s;
+  /* 选转图片过渡 */
 }
-.select{
+
+.select {
   position: absolute;
   z-index: 10;
   border: 2rpx solid #aaaaaa;
   padding: 0 10rpx;
-  top:46rpx;
+  top: 46rpx;
   left: -10rpx;
   width: 210rpx;
   overflow: auto;
   height: 0;
   max-height: 300rpx;
-  background-color:#fff;
+  background-color: #fff;
   box-sizing: border-box;
-  transition: height 0.5s;/* 高度变换过渡 */
+  transition: height 0.5s;
+  /* 高度变换过渡 */
 }
-.select .type{
+
+.select .type {
   color: #aaaaaa;
   border-top: 2px solid #dadada;
   padding: 10rpx;
 }
-.select :first-child{
+
+.select :first-child {
   border: 0;
 }
