@@ -1,0 +1,21 @@
+<!--pages/residence/authorDetail.wxml-->
+<!--作家图片轮播 -->
+<view class="box">
+  <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
+    <block wx:for="{{authorPicture}}" wx:key="id">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view class="page-title">
+  <image class='img' src="/image/write.svg" />
+  <text class="authorName">{{authorName}}</text>
+</view>
+
+<view class="page-preview">
+  <text class="intros">作家简介：</text>
+  <text class="authorPreview">{{authorPreview}}</text>
+</view>

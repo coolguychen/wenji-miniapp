@@ -1,19 +1,26 @@
 {
-  "pages":[
+  "pages": [
     "pages/homepage/homepage",
     "pages/search/search",
     "pages/both/both",
     "pages/literature/literature",
     "pages/residence/residence",
+    "pages/residence/authorDetail",
     "pages/residenceDetail/residenceDetail",
     "pages/logs/logs",
     "pages/literatureDetail/literatureDetail"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.18",
+      "provider": "wx50b5593e81dd937a"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FAF0E6",
     "navigationBarTitleText": "文迹",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "permission": {
     "scope.userLocation": {
