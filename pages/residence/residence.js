@@ -7,8 +7,6 @@ Page({
   data: {
     id: '', //地标的id
     imgUrls: [], //地点图片 -- 数组
-    desLatitude: '',
-    desLongitude: '',
     indicatorDots: true,
     color: '#ffffff',
     //当前选中的指示点颜色
@@ -43,7 +41,7 @@ Page({
   },
 
   //点击作家名，去到authorDetail
-  authorDetail: function(){
+  authorDetail: function () {
     var id = this.data.id;
     console.log(id);
     wx.navigateTo({
@@ -72,17 +70,35 @@ Page({
   },
 
   nav: function () {
-    let plugin = requirePlugin('routePlan');
-    let key = 'M2NBZ-PW6KX-KM644-7Y3RN-EQGYO-37FOM';  //使用在腾讯位置服务申请的key
-    let referer = '文迹';   //调用插件的app的名称
-    let endPoint = JSON.stringify({  //终点
-      'name': this.data.name,
-      'latitude': 31.229997,
-      'longitude': 121.454047
-    });
-    wx.navigateTo({
-      url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
-    });
+    var that = this;
+    var id = that.data.id;
+    wx.request({
+      //根据id获取经纬度，导航至目的地
+      url: 'http://localhost:8080/main/location?id=' + id,
+      method: 'GET',
+      data: {},
+      success(res) {
+        // console.log(res.data.data);
+        var item = res.data.data;
+        var latitude = item.latitude;
+        var longitude = item.longitude;
+        let plugin = requirePlugin('routePlan');
+        let key = 'M2NBZ-PW6KX-KM644-7Y3RN-EQGYO-37FOM';  //使用在腾讯位置服务申请的key
+        let referer = '文迹';   //调用插件的app的名称
+        let endPoint = JSON.stringify({  //终点
+          'name': that.data.name,
+          'latitude': latitude,
+          'longitude': longitude
+        });
+        wx.navigateTo({
+          url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+        });
+      },
+      fail(res) {
+        //获取经纬度失败
+      }
+    })
+
   },
 
   /**
@@ -106,7 +122,6 @@ Page({
         var address = item.address; //具体地址信息
         var authorName = item.authorName;
         var authorPicture = item.authorImg;
-        console.log(authorPicture);
         var authorPreview = item.authorPreview;
         var books = item.books //书列表
         that.setData({
