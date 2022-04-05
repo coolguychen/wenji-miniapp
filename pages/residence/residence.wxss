@@ -105,15 +105,23 @@
 }
 
 .page-preview {
-  margin: 10rpx 30rpx 30rpx 30rpx;/* 上 左 右 下 */
+  margin: 20rpx 25rpx 30rpx 40rpx;
+  /* 上 右 下 左 */
 }
 
-/* .page-preview .authorPreview {
+.page-preview .authorPreview {
   color: #666;
-  line-height: 44rpx;
-  letter-spacing: 1px;
-  font-size: 12px;
-} */
+  line-height: 46rpx;
+  letter-spacing: 2px;
+  font-size: 14px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 
 .page-title .img {
   width: 80rpx;
@@ -161,4 +169,11 @@
   line-height: 44rpx;
   letter-spacing: 2px;
   font-size: 12px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 }

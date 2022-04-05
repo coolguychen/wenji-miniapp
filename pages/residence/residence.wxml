@@ -31,14 +31,14 @@
 
 
   <!-- 3. 文人在此地的作品时间轴 -->
-  <view class='weui-cell-third'>
-    <view class="page-title" bindtap="authorDetail">
+  <view class='weui-cell-third' bindtap="authorDetail">
+    <view class="page-title">
       <image class='img' src="/image/write.svg" />
       <text class="authorName">{{authorName}}</text>
     </view>
-    <!-- <view class="page-preview">
-      <text class="authorPreview">作家简介：{{authorPreview}}</text>
-    </view> -->
+    <view class="page-preview">
+      <text class="authorPreview">{{authorPreview}}</text>
+    </view>
   </view>
   <block wx:for="{{books}}" wx:key="*this">
     <view class='weui-cell-list'>
