@@ -1,11 +1,14 @@
 /* pages/residence/authorDetail.wxss */
+.authorDetail {
+  height: 100%;
+}
+
 .box {
   position: relative;
   left: 0rpx;
   right: 0rpx;
   /* height: 20%; */
   width: 100%;
-  background: rgb(248, 248, 248);
 }
 
 .swipimg {

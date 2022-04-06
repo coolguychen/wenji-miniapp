@@ -1,4 +1,8 @@
 /* pages/literature/literature.wxss */
+
+.literature{
+  height: 100%;
+}
 .title {
   font-size: 20px;
   margin-left: 5px;
@@ -46,7 +50,7 @@
   border-radius: 5px;
   border: 1px rgb(226, 226, 226);
   margin-bottom: 20px;
-
+  background-color: #fffef8;
 }
 
 .relatedWork {
@@ -62,7 +66,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #FAF0E6;
+  background-color: #fffef8;
 }
 
 .tools {
@@ -84,14 +88,14 @@
 
 .nav-img {
   margin-left: 30rpx;
-  background-color: white;
+  /* background-color: white; */
   margin-right: 20rpx;
 }
 
 .horizon {
   width: 660rpx;
   height: 2rpx;
-  background-color: #cccaca9a;
+  background-color: #beb9b99a;
   vertical-align: middle;
   position: relative;
   top: 50rpx;

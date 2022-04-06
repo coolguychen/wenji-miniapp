@@ -26,8 +26,10 @@
 }
 .page_row{
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  background-color: white;
 }
+
 .searchcion {
   margin: 10rpx 10rpx 10rpx 10rpx;
   position: absolute;

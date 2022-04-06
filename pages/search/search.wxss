@@ -1,6 +1,10 @@
 /* pages/search/search.wxss */
-/* pages/search/search.wxss */
+.input-search {
+  background-color: white;
+}
+
 .search {
+  background-color: white;
   position: relative;
   margin-left: 10px;
   margin-right: 20px;
