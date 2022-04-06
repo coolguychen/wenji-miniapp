@@ -64,3 +64,37 @@
   align-items: center;
   background-color: #FAF0E6;
 }
+
+.tools {
+  margin-top: 20rpx;
+  margin-bottom: 15px;
+  margin-right: 5px;
+}
+
+.circle-img {
+  float: right;
+  margin-right: 40rpx;
+  vertical-align: middle;
+}
+
+.circle-img image {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.nav-img {
+  margin-left: 30rpx;
+  background-color: white;
+  margin-right: 20rpx;
+}
+
+.horizon {
+  width: 660rpx;
+  height: 2rpx;
+  background-color: #cccaca9a;
+  vertical-align: middle;
+  position: relative;
+  top: 50rpx;
+  margin: 0 auto;
+  z-index: -99;
+}

@@ -41,6 +41,46 @@ Page({
         })
     },
 
+    onCollectionTap: function (ev) {
+        wx.showToast({
+            title: "收藏成功",
+            duration: 1000,
+            icon: "success"
+        })
+    },
+
+    nav: function () {
+        var that = this;
+        var id = that.data.id;
+        wx.request({
+            //根据id获取经纬度，导航至目的地
+            url: 'http://localhost:8080/main/location?id=' + id,
+            method: 'GET',
+            data: {},
+            success(res) {
+                // console.log(res.data.data);
+                var item = res.data.data;
+                var latitude = item.latitude;
+                var longitude = item.longitude;
+                let plugin = requirePlugin('routePlan');
+                let key = 'M2NBZ-PW6KX-KM644-7Y3RN-EQGYO-37FOM'; //使用在腾讯位置服务申请的key
+                let referer = '文迹'; //调用插件的app的名称
+                let endPoint = JSON.stringify({ //终点
+                    'name': that.data.name,
+                    'latitude': latitude,
+                    'longitude': longitude
+                });
+                wx.navigateTo({
+                    url: 'plugin://routePlan/index?key=' + key + '&referer=' + referer + '&endPoint=' + endPoint
+                });
+            },
+            fail(res) {
+                //获取经纬度失败
+            }
+        })
+
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -136,14 +176,14 @@ Page({
     /**
      * 点击书籍列表中元素进行跳转
      */
-    toBookDetail: function(e){
+    toBookDetail: function (e) {
         console.log(e)
         let bookId = e.currentTarget.dataset.idx
         let placeId = this.data.id
         console.log(bookId)
         console.log(placeId)
         wx.navigateTo({
-            url: '../literatureDetail/literatureDetail?bookId='+bookId+'&placeId='+placeId
+            url: '../literatureDetail/literatureDetail?bookId=' + bookId + '&placeId=' + placeId
         })
     }
 })

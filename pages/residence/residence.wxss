@@ -47,7 +47,8 @@
 
 .tools {
   margin-top: 20rpx;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-right: 5px;
 }
 
 .circle-img {
@@ -64,6 +65,7 @@
 .nav-img {
   margin-left: 30rpx;
   background-color: white;
+  margin-right: 20rpx;
 }
 
 .horizon {

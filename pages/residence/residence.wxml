@@ -18,16 +18,18 @@
     <view class="title">{{name}}</view>
     <!-- 具体位置 -->
     <view class="text">{{address}}</view>
+
+    <view class="tool" style="width: 750rpx; height: 125rpx; display: block; box-sizing: border-box">
+      <view class="circle-img">
+        <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
+        <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
+        <image class="nav-img" catchtap='nav' src="/image/导航.png"></image>
+      </view>
+      <view class="horizon"></view>
+    </view>
   </view>
 
-  <view class="tool" style="width: 750rpx; height: 100rpx; display: block; box-sizing: border-box">
-    <view class="circle-img">
-      <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
-      <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
-      <image class="nav-img" catchtap='nav' src="/image/导航.png"></image>
-    </view>
-    <view class="horizon"></view>
-  </view>
+
 
 
   <!-- 3. 文人在此地的作品时间轴 -->
