@@ -3,29 +3,31 @@
 <!-- 纵向滚动 -->
 <scroll-view class='residence' scroll-y="true">
   <view class="residence">
-    <!-- 1. 地标图片 -->
-    <!--图片轮播 -->
-    <view class="box">
-      <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
-        <block wx:for="{{imgUrls}}" wx:key="id">
-          <swiper-item>
-            <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
-    <!-- 2. 地点简介（地址） -->
-    <view class="information" style="margin-top: 15px;">
-      <!-- 地点名字 -->
-      <view class="title">{{name}}</view>
-      <!-- 具体位置 -->
-      <view class="text">{{address}}</view>
+    <view>
+      <!-- 1. 地标图片 -->
+      <!--图片轮播 -->
+      <view class="box">
+        <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
+          <block wx:for="{{imgUrls}}" wx:key="id">
+            <swiper-item>
+              <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <!-- 2. 地点简介（地址） -->
+      <view class="information" style="margin-top: 15px;">
+        <!-- 地点名字 -->
+        <view class="title">{{name}}</view>
+        <!-- 具体位置 -->
+        <view class="text">{{address}}</view>
 
-      <view class="tool" style="width: 750rpx; height: 125rpx; display: block; box-sizing: border-box">
-        <view class="circle-img">
-          <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
-          <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
-          <image class="nav-img" catchtap='nav' src="/image/导航.png"></image>
+        <view class="tool" style="width: 750rpx; height: 125rpx; display: block; box-sizing: border-box">
+          <view class="circle-img">
+            <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
+            <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
+            <image class="nav-img" catchtap='nav' src="/image/导航.png"></image>
+          </view>
         </view>
       </view>
     </view>

@@ -18,6 +18,9 @@
                 <view class="book-releasetime">
                     <text>发表时间：{{releaseTime}}</text>
                 </view>
+                <view class="book-situation">
+                    <text>作品语境：</text>
+                </view>
                 <view class="book-quote">
                     <text>“{{quote}}”</text>
                 </view>
