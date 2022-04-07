@@ -50,7 +50,7 @@
   position: relative;
   top: 50rpx;
   margin: 0 auto;
-  z-index: -9;
+  z-index: 1;
 }
 
 .information {
@@ -64,7 +64,7 @@
   margin-bottom: 20px;
   background-color: #fffef8;
   position: relative;
-  z-index: -99;
+  /* z-index: -99; */
 }
 
 .relatedWork {
@@ -93,7 +93,8 @@
   float: right;
   margin-right: 40rpx;
   vertical-align: middle;
-  z-index: 2;
+  position: relative;
+  z-index: 999;
 }
 
 .circle-img image {
@@ -104,7 +105,9 @@
 
 .nav-img {
   margin-left: 30rpx;
-  background-color: white;
+  background-color: #fffef8;
   margin-right: 20rpx;
+  position: relative;
+  z-index: 999;
 }
 

@@ -15,6 +15,7 @@ Page({
     duration: 100,
     vertical: false,
     circular: true,
+    collected: false,
     //swiper高度
     height: '',
     name: '', //地名
@@ -62,10 +63,23 @@ Page({
   },
 
   onCollectionTap: function (ev) {
-    wx.showToast({
-      title: "收藏成功",
-      duration: 1000,
-      icon: "success"
+    var collected = this.data.collected;
+    if (collected == false) {
+      wx.showToast({
+        title: "收藏成功",
+        duration: 1000,
+        icon: "success"
+      })
+    }
+    else {
+      wx.showToast({
+        title: "取消收藏",
+        duration: 1000,
+        icon: "success"
+      })
+    }
+    this.setData({
+      collected: !collected
     })
   },
 
