@@ -60,7 +60,7 @@ Page({
       success (res) {
         //console.log(res.data.data)
         type=res.data.data
-        //console.log(type)
+        console.log('type:'+type)
         if(type == 0){ //文人故居
           wx.navigateTo({
             url: '../residence/residence?id=' + e.markerId,

@@ -1,6 +1,7 @@
 /* pages/search/search.wxss */
 .input-search {
   background-color: white;
+  padding: 5px;
 }
 
 .search {

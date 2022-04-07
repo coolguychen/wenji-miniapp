@@ -4,7 +4,7 @@
   <view class="item">
     <!-- 通过点击事件改变图片的旋转角度、自定义下拉框的高度 -->
     <view class="value" bindtap="select">
-      <view style="display: inline-block; width: 120rpx; height: 71rpx; box-sizing: border-box">{{type!=''?type:'请选择'}}</view>
+      <view style="display: inline-block; width: 115rpx; height: 71rpx; box-sizing: border-box">{{type!=''?type:'请选择'}}</view>
       <image src="/image/下拉.png" class="sanjiao" style="width: 40rpx; height:40rpx; display: inline-block; box-sizing: border-box" />
       <!-- select -->
       <view class="select" style="{{isSelect?'height:'+60*types.length+'rpx;':'border:0'}}">
@@ -12,9 +12,9 @@
       </view>
     </view>
   </view>
-  <view class="search-wrapper" style="width: 558rpx; height: 87rpx; display: flex; box-sizing: border-box">
+  <view class="search-wrapper" style="width: 545rpx; height: 87rpx; display: flex; box-sizing: border-box">
     <view class='search'>
-      <input style="width: 404rpx; height: 83rpx; display: block; box-sizing: border-box" type='text' placeholder='请输入搜索内容' bindinput='input' bindconfirm='confirm' />
+      <input style="width: 395rpx; height: 83rpx; display: block; box-sizing: border-box" type='text' placeholder='请输入搜索内容' bindinput='input' bindconfirm='confirm' />
       <view class='search-confirm' bindtap='confirm' style="width: 150rpx; height: 80rpx; display: block; box-sizing: border-box">
         <button size="mini" type="primary" plain="true" style="width: 136rpx; height: 75rpx; display: block; box-sizing: border-box; left: -3rpx; top: 5rpx; position: relative">搜索</button>
       </view>

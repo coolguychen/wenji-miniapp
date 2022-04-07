@@ -7,6 +7,8 @@
 
 .search{
   width: 98%;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .search_arr {
   border: 1px solid #d0d0d0;
