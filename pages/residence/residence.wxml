@@ -28,6 +28,7 @@
             <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
             <image class="nav-img" catchtap='nav' src="/image/导航.png"></image>
           </view>
+          <view class="horizon"></view>
         </view>
       </view>
     </view>
