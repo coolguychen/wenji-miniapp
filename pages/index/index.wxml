@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="logo">
+    <text>
+      欢迎来到文迹！
+    </text>
+  </view>
+  <!-- 登录是判断该用户有没有授权 授权了直接进入homepage 未授权要授权 -->
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <!-- <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button> -->
+    </block>
+    <!-- 显示个人信息并登录 -->
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <button class="login" bindtap="toHomepage"> 登录 </button>
+    </block>
+  </view>
+</view>

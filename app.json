@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/homepage/homepage",
     "pages/search/search",
     "pages/both/both",
