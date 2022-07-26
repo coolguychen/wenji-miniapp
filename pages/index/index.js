@@ -1,11 +1,12 @@
+var app = getApp();
 Page({
   data: {
     userInfo: {}, //用户信息（包括昵称和头像）
     hasUserInfo: false,
     canIUseGetUserProfile: false,
-    openid:'',
-    nickname:'',
-    avatar:''
+    openid: '',
+    nickname: '',
+    avatar: ''
   },
   onLoad() {
     if (wx.getUserProfile) {
@@ -15,6 +16,7 @@ Page({
     }
   },
   getUserProfile(e) {
+    var that = this;
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
@@ -22,60 +24,42 @@ Page({
       success: (res) => {
         this.setData({
           userInfo: res.userInfo,
+          nickname: res.userInfo.nickName,
+          avatar: res.userInfo.avatarUrl,
           hasUserInfo: true
         })
-      }
+        //修改全局变量 方便其他页面使用
+        app.globalData.userInfo = res.userInfo
+        app.globalData.loginState = true;
+        //传值给后端
+        wx.login({
+          success: function (login_res) {
+            wx.getUserInfo({
+              success: function (res) {
+                wx.request({
+                  url: config.api_base_url + 'me/login',
+                  method: 'POST',
+                  header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                  },
+                  data: {
+                    code: login_res.code,//code是啥？
+                    avatar: userInfo.avatarUrl,
+                    nickname: userInfo.nickName
+                  }
+                })
+              }
+            })
+          }
+        })
+      },
+      
     })
-    this.passInfo(openid, userInfo)
   },
-  toHomepage(){
-    wx.navigateTo({
+
+  toHomepage() {
+    wx.redirectTo({
       url: '/pages/homepage/homepage',
-    })
-  },
-  //传值 将用户信息传给后端？
-  passInfo: function (openid, userInfo) {
-    var that = this;
-    console.log(that.userInfo);
-    console.log(that.openid);
-    //数据传给后端
-    wx.request({
-      url: '登录接口', //后端接口
-      method: 'POST',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      data: {
-        wximg: userInfo.avatarUrl,
-        nickname: userInfo.nickName,
-        identity: "",
-        logintype: "10",//微信登录
-        openid: that.data.openid,
-      },
-      success(res) {
-        if (res.data.r == "T") {
-          that.setData({ userEntity: res.data.d });
-          wx.setStorage({
-            key: "userEntity",
-            data: res.data.d
-          })
-          that.setData({ loginstate: "1" });
-          wx.setStorage({
-            key: "loginstate",
-            data: "1"
-          })
-          wx.setStorage({
-            key: 'userinfo',
-            data: "1"
-          })
-        }
-        else {
-          return;
-        }
-      },
-      fail(res) {
-        console.log(res);
-      }
     })
   },
 })

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/homepage/homepage",
+    "pages/index/index",
     "pages/search/search",
     "pages/both/both",
     "pages/literature/literature",

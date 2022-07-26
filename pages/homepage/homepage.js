@@ -1,20 +1,22 @@
 // pages/demo01/demo01.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    longitude:'',
-    latitude:'',
-    isSelect:false,//展示类型？
-    types:['人名','地名','书名'],//搜索类型
+    longitude: '',
+    latitude: '',
+    isSelect: false,//展示类型？
+    types: ['人名', '地名', '书名'],//搜索类型
     // types:[{'0':'人名'},{'1':'地名'},{'2':'书名'}],
-    type:"",
+    type: "",
     show: false,
     markers: [],
-    mapId:"map",
-    controls:[
+    mapId: "map",
+    userInfo: '',
+    controls: [
       {
         id: 1,
         iconPath: '/image/marker1.png',
@@ -39,7 +41,7 @@ Page({
   /**
     * 跳转到当前的位置
     */
-   moveTolocation: function () {
+  moveTolocation: function () {
     //mapId 就是你在 map 标签中定义的 id
     let Id = this.data.mapId
     var mapCtx = wx.createMapContext(Id);
@@ -51,21 +53,21 @@ Page({
    * 保留当前页面，跳转到应用内的某个页面，使用wx.navigateBack可以返回到原页面。
    * 通过url传参(e.markerId),页面demo02负责接受，根据id动态显示信息
    */
-  toInformation(e){
+  toInformation(e) {
     //console.log(e.markerId);
-    let type=-1;
+    let type = -1;
     wx.request({
-      url: 'http://localhost:8080/main/type?id='+e.markerId,
+      url: 'http://localhost:8080/main/type?id=' + e.markerId,
       method: 'GET',
-      success (res) {
+      success(res) {
         //console.log(res.data.data)
-        type=res.data.data
-        console.log('type:'+type)
-        if(type == 0){ //文人故居
+        type = res.data.data
+        console.log('type:' + type)
+        if (type == 0) { //文人故居
           wx.navigateTo({
             url: '../residence/residence?id=' + e.markerId,
           })
-        } else if(type == 1){ //文学地标
+        } else if (type == 1) { //文学地标
           wx.navigateTo({
             url: '../literature/literature?id=' + e.markerId,
           })
@@ -75,27 +77,27 @@ Page({
           })
         }
       }
-    })    
+    })
   },
 
   //获取mark标记点本地数据哦
-  getAllMarkers(){
+  getAllMarkers() {
     //获取全部markers
     let myMarker = [];
     wx.request({
       url: 'http://localhost:8080/main/all',
       method: 'GET',
-      data:{
+      data: {
       },
-      success (res) {
+      success(res) {
         console.log(res.data)
-        for(var i = 0; i < res.data.data.length; i++){
+        for (var i = 0; i < res.data.data.length; i++) {
           //console.log(res.data.data[i]);
           var item = res.data.data[i];
           //console.log(item);
           let mark = {
-            id: item.id ,
-            name: item.name ,
+            id: item.id,
+            name: item.name,
             iconPath: '/image/marker1.png',
             //注意经纬度要转成Float类型
             latitude: parseFloat(item.latitude),
@@ -116,12 +118,12 @@ Page({
     })
     return myMarker;
   },
-  
+
   //创建marker
-  createMarker(item){
+  createMarker(item) {
     let marker = {
-      id: item.id ,
-      name: item.name ,
+      id: item.id,
+      name: item.name,
       iconPath: '/image/marker1.png',
       //注意经纬度要转成Float类型
       latitude: parseFloat(item.latitude),
@@ -132,7 +134,7 @@ Page({
         content: item.name,
         color: "#ffbf00",
         fontSize: 12,
-        anchorX: -(0.5 * (3 * 24))/2,
+        anchorX: -(0.5 * (3 * 24)) / 2,
         textAlign: "center"
       },
     };
@@ -144,6 +146,41 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    wx.getSetting({
+      success: function (res) {
+        console.log(app.globalData.loginState)
+        // if (res.authSetting['scope.userInfo']) {
+        //判断用户是否授权 这里还有点问题？
+        if (app.globalData.userInfo) {
+          // 已经授权--userInfo不为空
+          console.log('已经授权')
+          console.log(app.globalData.userInfo)
+          wx.getUserInfo({
+            success: function (res) {
+              //用户已经授权过，添加用户信息
+              //wx.setStorageSync('nickName', res.userInfo.nickName)
+              //wx.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
+            }
+          });
+        }
+        else {
+          console.log('未授权')
+          wx.showToast({
+            title: '请授权登录！',
+            icon: 'none',
+            duration: 1500,
+            success: function () {
+              //定时器，未授权1.0秒后跳转授权页面
+              setTimeout(function () {
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
+              }, 1000);
+            }
+          })
+        }
+      }
+    })
     var allMarkers = that.getAllMarkers();
     //获取当前定位的经纬度信息
     wx.showLoading({
@@ -151,10 +188,10 @@ Page({
       mask: true
     })
     wx.getLocation({
-      type:'gcj02',
+      type: 'gcj02',
       altitude: 'true', //高精度定位
       //定位成功
-      success: function(res) {
+      success: function (res) {
         var latitudee = res.latitude
         var longitudee = res.longitude
         console.log(res.longitude)
@@ -162,19 +199,19 @@ Page({
         console.log(allMarkers)
         //赋值
         that.setData({
-          longitude:parseFloat(longitudee),
+          longitude: parseFloat(longitudee),
           latitude: parseFloat(latitudee),
           markers: allMarkers
         })
       },
       //定位失败
-      fail: function(){
+      fail: function () {
         wx.showToast({
           title: '定位失败',
           icon: "none"
         })
       },
-      complete: function(){
+      complete: function () {
         //隐藏定位中信息进度
         wx.hideLoading()
       }
