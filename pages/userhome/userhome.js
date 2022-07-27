@@ -5,16 +5,15 @@ Page({
      * 页面的初始数据
      */
     data: {
-        statistic: ''
+        head: '/image/用户.png',
+        name: '未登录'
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            statistic: 1
-          })
+        
     },
 
     /**

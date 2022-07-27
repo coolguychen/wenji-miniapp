@@ -1,2 +1,9 @@
 <!--pages/userhome/userhome.wxml-->
-<text>{{statistic}}</text>
+ <!-- 第一部分 -->
+ <view class="view_1">
+    <view class="view_head_name">
+      <image class="image_radius" src="{{head}}" />
+      <text>{{name}}</text>
+    </view>
+</view>
+

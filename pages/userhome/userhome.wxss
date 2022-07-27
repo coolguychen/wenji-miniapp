@@ -1,1 +1,15 @@
 /* pages/userhome/userhome.wxss */
+.view_head_name {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .image_radius {
+    height: 50px;
+    width: 50px;
+    border-radius: 30px;
+  }
+  
