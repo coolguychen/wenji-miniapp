@@ -9,7 +9,8 @@
     "pages/residence/authorDetail",
     "pages/residenceDetail/residenceDetail",
     "pages/logs/logs",
-    "pages/literatureDetail/literatureDetail"
+    "pages/literatureDetail/literatureDetail",
+    "pages/userhome/userhome"
   ],
   "plugins": {
     "routePlan": {
@@ -29,5 +30,25 @@
     }
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "image/地图.png",
+        "iconPath": "image/地图.png",
+        "pagePath": "pages/homepage/homepage",
+        "text": "地图"
+      },
+      {
+        "selectedIconPath": "image/用户.png",
+        "iconPath": "image/用户.png",
+        "pagePath": "pages/userhome/userhome",
+        "text": "用户"
+      }
+    ],
+    "position": "bottom"
+  }
 }

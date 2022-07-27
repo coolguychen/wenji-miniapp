@@ -1,0 +1,2 @@
+<!--pages/userhome/userhome.wxml-->
+<text>{{statistic}}</text>
