@@ -6,30 +6,34 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    登录
+    //登录
     wx.login({
       success(res) {
         if (res.code) {
-          //发起网络请求
+          console.log(res.code)
           wx.request({
-            url: '后台接口',
+            url: 'http://localhost:8080/user/login',
             data: {
-              code: res.code
+              code: res.code,
             },
-            success(data){
-              console.log("openid:" + data.data)
-              // this.setData({
-              //   openid: data.data
-              // })
-              this.globalData.openid = data.data
+            method:'get',
+            header: {
+              "Content-Type": "applciation/json"
+            },  
+            success:function(res){
+              console.log('res.openid: ' + res.data.openid)
             },
-            fail(data){
-              console.log("获取openid失败")
+            fail:function(res){
+              console.log("fail");
             }
+            
           })
         } else {
-          console.log('登录失败！' + res.errMsg)
+          console.log(res.errMsg)
         }
+      },
+      fail(res) {
+        console.log("登录失败！")
       }
     })
     // // 获取用户信息
