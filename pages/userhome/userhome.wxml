@@ -1,9 +1,25 @@
 <!--pages/userhome/userhome.wxml-->
- <!-- 第一部分 -->
- <view class="view_1">
-    <view class="view_head_name">
-      <image class="image_radius" src="{{head}}" />
-      <text>{{name}}</text>
+<!-- 登录是判断该用户有没有授权 授权了直接进入homepage 未授权要授权 -->
+<view class="userinfo">
+  <block wx:if="{{!isRegistered}}">
+    <!-- 第一部分 未授权-->
+    <view class="view_1">
+      <view class="view_head_name">
+        <image class="image_radius" src="{{head}}" />
+        <text>{{name}}</text>
+      </view>
     </view>
+    <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+  </block>
+  <!-- 已授权--显示个人信息并登录 -->
+  <block wx:else>
+    <view class="view_2">
+      <view class="view_head_name">
+        <image class="image_radius" src="{{head}}" />
+        <text>{{name}}</text>
+      </view>
+    </view>
+    <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+  </block>
 </view>
-

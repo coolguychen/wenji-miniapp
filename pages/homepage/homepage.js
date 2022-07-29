@@ -146,41 +146,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    wx.getSetting({
-      success: function (res) {
-        console.log(app.globalData.loginState)
-        // if (res.authSetting['scope.userInfo']) {
-        //判断用户是否授权 这里还有点问题？
-        if (app.globalData.userInfo) {
-          // 已经授权--userInfo不为空
-          console.log('已经授权')
-          console.log(app.globalData.userInfo)
-          wx.getUserInfo({
-            success: function (res) {
-              //用户已经授权过，添加用户信息
-              //wx.setStorageSync('nickName', res.userInfo.nickName)
-              //wx.setStorageSync('avatarUrl', res.userInfo.avatarUrl)
-            }
-          });
-        }
-        // else {
-        //   console.log('未授权')
-        //   wx.showToast({
-        //     title: '请授权登录！',
-        //     icon: 'none',
-        //     duration: 1500,
-        //     success: function () {
-        //       //定时器，未授权1.0秒后跳转授权页面
-        //       setTimeout(function () {
-        //         wx.reLaunch({
-        //           url: '/pages/index/index',
-        //         })
-        //       }, 1000);
-        //     }
-        //   })
-        // }
-      }
-    })
     var allMarkers = that.getAllMarkers();
     //获取当前定位的经纬度信息
     wx.showLoading({
