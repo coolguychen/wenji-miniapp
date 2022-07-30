@@ -47,7 +47,7 @@ Page({
               //设置全局变量openid
               app.globalData.openid = res.data.data.openid
               //看用户是否注册 用户名不为空
-              if (res.data.data.nickName != "") {
+              if (res.data.data.nickName != "" && res.data.data.nickName != null) {
                 isRegistered = true;
                 nickName = res.data.data.nickName
                 avatarUrl = res.data.data.avatarUrl
