@@ -1,7 +1,7 @@
 <!--pages/userhome/userhome.wxml-->
 <!-- 登录是判断该用户有没有授权 授权了直接进入homepage 未授权要授权 -->
 <view class="userinfo">
-  <block wx:if="{{!isRegistered}}">
+  <block wx:if="{{!hasUserInfo}}">
     <!-- 第一部分 未授权-->
     <view class="view_1">
       <view class="view_head_name">

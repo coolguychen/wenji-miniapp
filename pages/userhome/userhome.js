@@ -11,7 +11,6 @@ Page({
     canIUseGetUserProfile: false, //是否同意授权
     userInfo: {}, //用户信息（包括昵称和头像）
     hasUserInfo: false,
-    isRegistered: false,
     openid: ''
   },
 
@@ -20,16 +19,18 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    //加载页面时的局部变量
+    var nickName = ''
+    var avatarUrl = ''
     if (wx.getUserProfile) {
       that.setData({
         canIUseGetUserProfile: true
       })
     }
-    //在“我的”界面登录
+    //在“我的”界面登录/注册
     wx.login({
       success(res) {
         if (res.code) {
-          console.log(res.code)
           wx.request({
             url: 'http://localhost:8080/user/login',
             data: {
@@ -40,16 +41,23 @@ Page({
               "Content-Type": "applciation/json"
             },
             success: function (res) {
-              //看用户是否存在于数据库
-              console.log(res.data.data.registered)
+              var isRegistered = false
+              console.log(res.data.msg)
               console.log('openid: ' + res.data.data.openid)
               //设置全局变量openid
               app.globalData.openid = res.data.data.openid
-              console.log(app.globalData.openid)
+              //看用户是否注册 用户名不为空
+              if (res.data.data.nickName != "") {
+                isRegistered = true;
+                nickName = res.data.data.nickName
+                avatarUrl = res.data.data.avatarUrl
+              }
               //赋值
               that.setData({
-                isRegistered: res.data.data.registered, //是否注册
-                openid: app.globalData.openid //openid
+                hasUserInfo: isRegistered,
+                openid: app.globalData.openid, //openid
+                // name: res.data.data.nickName,
+                // head: res.data.data.avatarUrl
               });
             },
             fail: function (res) {
@@ -59,22 +67,25 @@ Page({
         } else {
           console.log(res.errMsg)
         }
-
       },
       fail(res) {
         console.log("登录失败！")
       }
     })
-    console.log(that.data)
-    if(that.data.isRegistered == true) {
-      //获取用户名和头像
-      that.setData({
-        head : app.globalData.userInfo.avatarUrl,
-        name : app.globalData.userInfo.nickName
-      })
-      console.log(that.data)
-    }
+    setTimeout(function () {
+      //要延时执行的代码
+      if (that.data.hasUserInfo == true) {
+        //获取用户名和头像
+        that.setData({
+          head: avatarUrl,
+          name: nickName
+        })
+        console.log(that.data)
+      }
+    }, 1000) //延迟时间 这里是1秒
+
   },
+
   getUserProfile(e) {
     var that = this;
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
@@ -86,7 +97,7 @@ Page({
           userInfo: res.userInfo,
           head: res.userInfo.avatarUrl,
           name: res.userInfo.nickName,
-          isRegistered: true
+          hasUserInfo: true
         })
         console.log(res.userInfo)
         //传值给后端
