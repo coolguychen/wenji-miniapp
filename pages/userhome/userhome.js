@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    head: '/image/用户.png',
+    head: '/image/daizhuce.png',
     name: '未登录',
     canIUseGetUserProfile: false, //是否同意授权
     userInfo: {}, //用户信息（包括昵称和头像）
@@ -51,6 +51,8 @@ Page({
                 isRegistered = true;
                 nickName = res.data.data.nickName
                 avatarUrl = res.data.data.avatarUrl
+                console.log(nickName)
+                console.log(avatarUrl)
               }
               //赋值
               that.setData({
