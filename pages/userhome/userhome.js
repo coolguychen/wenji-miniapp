@@ -54,7 +54,7 @@ Page({
                 avatarUrl = res.data.data.avatarUrl
                 console.log(nickName)
                 console.log(avatarUrl)
-                
+
               }
               //赋值
               that.setData({
@@ -133,16 +133,25 @@ Page({
   //跳转至“我的收藏”界面
   gotoStars() {
     wx.navigateTo({
-      url: '/pages/stars/stars',
+      url: '/pages/my/stars',
     })
   },
 
   //跳转至“我的足迹”界面
   gotoFootprint() {
     wx.navigateTo({
-      url: '/pages/footprint/footprint',
+      url: '/pages/my/footprint',
     })
   },
+
+  //跳转至“意见反馈”界面
+  gotoSuggestion() {
+    wx.navigateTo({
+      url: '/pages/my/suggestion',
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

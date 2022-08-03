@@ -11,8 +11,9 @@
     "pages/logs/logs",
     "pages/literatureDetail/literatureDetail",
     "pages/userhome/userhome",
-    "pages/stars/stars",
-    "pages/footprint/footprint"
+    "pages/my/stars",
+    "pages/my/footprint",
+    "pages/my/suggestion"
   ],
   "plugins": {
     "routePlan": {
