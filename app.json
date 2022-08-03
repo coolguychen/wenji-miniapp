@@ -10,7 +10,9 @@
     "pages/residenceDetail/residenceDetail",
     "pages/logs/logs",
     "pages/literatureDetail/literatureDetail",
-    "pages/userhome/userhome"
+    "pages/userhome/userhome",
+    "pages/stars/stars",
+    "pages/footprint/footprint"
   ],
   "plugins": {
     "routePlan": {

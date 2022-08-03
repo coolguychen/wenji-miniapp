@@ -1,0 +1,30 @@
+<!--pages/footprint/footprint.wxml-->
+<!--pages/stars/stars.wxml-->
+<!-- 时间轴 去过的地点 -->
+<view class="listview-container">
+<!-- 遍历我的足迹 -->
+  <block wx:for="{{footprintList}}" wx:key="index">
+    <view class="playlog-item" >
+      <view class="dotline">
+        <!-- 竖线 -->
+        <view class="line"></view>
+        <!-- 圆点 -->
+        <view class="dot">
+        <image class="dot-image" src="/image/map3.png"></image>
+        </view>
+        <!-- 时间戳 -->
+      </view>
+      <view class="content">
+      <!-- 包括记录的时间和地点的名称 -->
+        <view class="infomation"> 
+          <text class="time">{{item.time}}</text>
+          <image class="visibility" wx:if="{{item.isPrivate}}" src="/image/invisible1.png"></image>
+        </view>
+        <text class="location">{{item.location}}</text>
+        <text class="comment" >{{item.comment}}</text>
+        <!-- 如何展示评论的图片？ -->
+      </view>
+    </view>
+  </block>
+</view>
+

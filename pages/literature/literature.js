@@ -1,4 +1,5 @@
 // pages/literature/literature.js
+var app = getApp()
 Page({
 
   /**
@@ -42,15 +43,35 @@ Page({
     })
   },
 
-  onCollectionTap: function (ev) {
+  starTab: function (ev) {
     var collected = this.data.collected;
+    //若一开始没有收藏 点击后加入收藏
     if (collected == false) {
+      //后端POST一条数据
+      //1. 输入：地点id、openid
+      //2. 数据库存储“想去”对应关系（加入时间（年月日））
+      wx.request({
+        url: 'url',
+        data:{
+          id: this.data.id,
+          openid: app.globalData.openid
+        },
+        method: 'POST',
+        success(res){
+          wx.showToast({
+            title: "收藏成功",
+            duration: 1000,
+            icon: "success"
+          })
+        }
+      })
       wx.showToast({
         title: "收藏成功",
         duration: 1000,
         icon: "success"
       })
     }
+    //否则 取消收藏 后端list中删除该项
     else {
       wx.showToast({
         title: "取消收藏",
@@ -59,6 +80,7 @@ Page({
       })
     }
     this.setData({
+      //赋值
       collected: !collected
     })
   },

@@ -1,0 +1,76 @@
+/* pages/stars/stars.wxss */
+/*外部容器*/
+.listview-container {
+  margin: 10rpx 10rpx;
+  margin-bottom: 115rpx;
+}
+  
+/*行样式*/
+.playlog-item {
+  display: flex;
+}
+  
+/*时间轴*/
+.playlog-item .dotline {
+  width: 35px;
+  position: relative;
+}
+  
+/*竖线*/
+.playlog-item .dotline .line {
+  width: 1px;
+  height: 100%;
+  background: #f1ecea;
+  position: absolute;
+  top: 0;
+  left: 15px; 
+}
+
+
+.playlog-item .dotline .dot .dot-image {
+  width: 40px;
+  height: 38px; 
+  position: absolute; 
+  /* background: #ffffff; */
+  top: 10px; 
+}
+  
+/*时间戳*/
+.playlog-item .dotline .time {
+  width: 100%;
+  position: absolute;
+  margin-top: 30px;
+  z-index: 99;
+  font-size: 14px;
+  color:  #f1ecea;
+  text-align: center;
+}
+  
+/*右侧主体内容*/
+.playlog-item .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #f1ecea;
+  margin-left: 10px;
+  /* margin: 5px  0; */
+}
+  
+/*标记想去的时间*/
+.playlog-item .content .time {
+  font-size: 30rpx;
+  line-height: 56rpx;
+  color: #999;
+}
+
+/*想去的地点名*/
+.playlog-item .content .location {
+  font-size: 36rpx;
+  line-height: 68rpx;
+  color: #444;
+  white-space: normal;
+  padding-right: 10px;
+  margin-top: 5rpx;
+  margin-bottom: 5rpx;
+}
+  

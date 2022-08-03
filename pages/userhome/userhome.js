@@ -36,7 +36,7 @@ Page({
             data: {
               code: res.code,
             },
-            method: 'get',
+            method: 'GET',
             header: {
               "Content-Type": "applciation/json"
             },
@@ -46,13 +46,15 @@ Page({
               console.log('openid: ' + res.data.data.openid)
               //设置全局变量openid
               app.globalData.openid = res.data.data.openid
-              //看用户是否注册 用户名不为空
+              //看用户是否注册 用户名不为空 注册设为TRUE 并给hasUserInfo和name和head赋值
               if (res.data.data.nickName != "" && res.data.data.nickName != null) {
                 isRegistered = true;
+                //本地变量赋值
                 nickName = res.data.data.nickName
                 avatarUrl = res.data.data.avatarUrl
                 console.log(nickName)
                 console.log(avatarUrl)
+                
               }
               //赋值
               that.setData({
@@ -61,6 +63,7 @@ Page({
                 // name: res.data.data.nickName,
                 // head: res.data.data.avatarUrl
               });
+
             },
             fail: function (res) {
               console.log("fail");
@@ -127,6 +130,19 @@ Page({
     })
   },
 
+  //跳转至“我的收藏”界面
+  gotoStars() {
+    wx.navigateTo({
+      url: '/pages/stars/stars',
+    })
+  },
+
+  //跳转至“我的足迹”界面
+  gotoFootprint() {
+    wx.navigateTo({
+      url: '/pages/footprint/footprint',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

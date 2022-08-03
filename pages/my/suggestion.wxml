@@ -1,0 +1,22 @@
+<!--pages/my/suggestion.wxml-->
+
+<text class="suggestion">
+  如果您有任何意见与建议，欢迎联系我们:D
+</text>
+
+<!--开发者信息区域-->
+<view id="developerView">
+    <view class="developerItemView">
+        <view>开发者微信号</view>
+        <view>xxx</view>
+    </view>
+    <view class="developerItemView">
+        <view>开发者邮箱</view>
+        <view>wenji@163.com</view>
+    </view>
+    <view class="developerItemView">
+        <view>项目地址</view>
+        <view>xxx.com</view>
+    </view>
+</view>
+
