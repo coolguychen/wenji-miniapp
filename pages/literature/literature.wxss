@@ -29,7 +29,7 @@
   margin-left: 15rpx;
   margin-top: 20rpx;
   margin-right: 15rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 10rpx;
   line-height: 46rpx;
   letter-spacing: 2px;
   font-size: 12px;
@@ -84,7 +84,7 @@
 }
 
 .tools {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   margin-bottom: 15px;
   margin-right: 5px;
 }
@@ -111,3 +111,41 @@
   z-index: 999;
 }
 
+/* 评分部分样式 */
+.stars {
+  display: flex;
+  margin: 10rpx 0;
+}
+.star {
+  position: relative;
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+/* 黄色星星 */
+.star view.icon_yellow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  height: 50rpx;
+  overflow: hidden;
+}
+/* 灰色星星背景 */
+.star view.icon_gray {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.star view image {
+  width: 60rpx;
+  height: 60rpx;
+  display: block;
+}
+
+.remark {
+  
+}

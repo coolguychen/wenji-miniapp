@@ -17,6 +17,7 @@ Page({
 
     ],
     collected: false,
+    tick: false, //是否已经打卡
     indicatorDots: true,
     color: '#ffffff',
     //当前选中的指示点颜色
@@ -26,7 +27,39 @@ Page({
     vertical: false,
     circular: true,
     //swiper高度
-    height: ''
+    height: '',
+
+
+    //显示平均星级
+    // 星星列表
+    stars: [
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+    ],
+    // 要展示的评分
+    remark_num: 0.0,
+    // 整颗星的个数
+    int: "",
+    // 非整颗星的百分比
+    percent: ""
   },
   // 图片高度自适应
   goheight: function (e) {
@@ -85,6 +118,25 @@ Page({
     })
   },
 
+  onTickTap: function (ev) {
+    var tick = this.data.tick;
+    if (tick == false) { //如果之前没有打卡过
+      wx.navigateTo({
+        url: '../makepunch/makepunch',
+      })
+    }
+    else {
+      wx.showToast({
+        title: "取消收藏",
+        duration: 1000,
+        icon: "success"
+      })
+    }
+    this.setData({
+      collected: !collected
+    })
+  },
+
   nav: function () {
     var that = this;
     var id = that.data.id;
@@ -131,6 +183,7 @@ Page({
     var name1 = ''
     var address1 = ''
     var booklist1 = ''
+    var remark_num1 = ''
     var that = this
 
     wx.request({
@@ -144,16 +197,28 @@ Page({
         name1 = item.name
         address1 = item.address
         booklist1 = item.books
+        //todo: 后端更新后修改该评分
+        remark_num1 = 4.7
+        var int1 = Math.floor(remark_num1);  // 向下取整-得到整颗星的个数
+        var percent1 = (remark_num1 - int1) * 100 + '%';  // 非整颗星的百分比
+        //todo: 后端更新后修改想去，去过状态
 
         that.setData({
           imgUrls: imgUrls1,
           name: name1,
           address: address1,
-          booklist: booklist1
+          booklist: booklist1,
+          remark_num: remark_num1,
+          int: int1,
+          percent: percent1
         })
 
         console.log(booklist1)
         console.log(that.data.booklist)
+        console.log(that.data.int)
+        console.log(that.data.percent)
+
+        
 
       }
     })
