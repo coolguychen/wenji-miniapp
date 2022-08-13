@@ -32,8 +32,7 @@ Page({
 
     //显示平均星级
     // 星星列表
-    stars: [
-      {
+    stars: [{
         bgImg: "/image/star_gray.png",
         bgfImg: "/image/star_yellow.png",
       },
@@ -85,12 +84,12 @@ Page({
       //2. 数据库存储“想去”对应关系（加入时间（年月日））
       wx.request({
         url: 'url',
-        data:{
+        data: {
           id: this.data.id,
           openid: app.globalData.openid
         },
         method: 'POST',
-        success(res){
+        success(res) {
           wx.showToast({
             title: "收藏成功",
             duration: 1000,
@@ -121,11 +120,25 @@ Page({
   onTickTap: function (ev) {
     var tick = this.data.tick;
     if (tick == false) { //如果之前没有打卡过
-      wx.navigateTo({
-        url: '../makepunch/makepunch',
-      })
-    }
-    else {
+      if (app.globalData.openid == null) {
+        wx.showToast({
+          title: '请先登录',
+          icon: 'error',
+          success: function () {
+            setTimeout(function () {
+              wx.switchTab({
+                url: '../userhome/userhome',
+              })
+            }, 1500);
+          }
+        })
+      } else {
+        wx.navigateTo({
+          url: '../makepunch/makepunch?name=' + this.data.name + '&id=' + this.data.id,
+        })
+      }
+
+    } else {
       wx.showToast({
         title: "取消收藏",
         duration: 1000,
@@ -133,7 +146,7 @@ Page({
       })
     }
     this.setData({
-      collected: !collected
+      tike: !tick
     })
   },
 
@@ -199,8 +212,8 @@ Page({
         booklist1 = item.books
         //todo: 后端更新后修改该评分
         remark_num1 = 4.7
-        var int1 = Math.floor(remark_num1);  // 向下取整-得到整颗星的个数
-        var percent1 = (remark_num1 - int1) * 100 + '%';  // 非整颗星的百分比
+        var int1 = Math.floor(remark_num1); // 向下取整-得到整颗星的个数
+        var percent1 = (remark_num1 - int1) * 100 + '%'; // 非整颗星的百分比
         //todo: 后端更新后修改想去，去过状态
 
         that.setData({
@@ -218,7 +231,7 @@ Page({
         console.log(that.data.int)
         console.log(that.data.percent)
 
-        
+
 
       }
     })

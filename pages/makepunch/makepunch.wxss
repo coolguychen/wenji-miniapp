@@ -1,1 +1,114 @@
 /* pages/makepunch/makepunch.wxss */
+.makepunch{
+    height: 100%;
+}
+
+
+.boss1 {
+    display: flex;
+    /*设置显示样式**/
+    align-items: center;
+    /**子view垂直居中*/
+    vertical-align: center;
+    /**垂直居中*/
+    justify-content: center;
+    /**内容居中*/
+    flex-direction: row;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.boss3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.line {
+    background: #eadfdb;
+    width: 100%;
+    height: 3rpx;
+}
+
+textarea {
+    margin-top: 3px;
+    height: 300rpx;
+    border: 0rpx solid rebeccapurple;
+    position: relative;
+}
+
+.botsum {
+    position: absolute;
+    top: 260rpx;
+    font-size: 28rpx;
+}
+
+.small_text {
+    font-size: 15px;
+    color: #777372;
+}
+
+.boss2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+}
+
+/* 评分部分样式 */
+.stars {
+    display: flex;
+    margin: 10rpx 0;
+  }
+
+.stars view {
+    position: relative;
+    width: 50rpx;
+    height: 50rpx;
+    margin-right: 10rpx;
+}
+
+.stars view image {
+    width: 60rpx;
+    height: 60rpx;
+    display: block;
+}
+
+.boss4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.boss4_1 {
+    margin-right: 20px;
+}
+
+.boss4_2 {
+    margin-left: 20px;
+}
+
+.album-item {
+    flex-direction: column;
+    margin: 0.1rem;
+    background: white;
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+
+.btn1 {
+    width: 80%;
+    margin-top: 20rpx;
+    background-color: rgb(30, 144, 255);
+    color: white;
+    border-radius: 98rpx;
+}
+
+.btn1::after {
+    border-radius: 98rpx;
+}

@@ -1,2 +1,59 @@
 <!--pages/makepunch/makepunch.wxml-->
-<text>pages/makepunch/makepunch.wxml</text>
+<scroll-view class="makepunch" scroll-y="true">
+    <view class="boss1">
+        <text>{{location}}</text>
+    </view>
+
+    <view class="boss3">
+        <view class='line'></view>
+    </view>
+
+    <view class="boss2">
+        <textarea bindinput='textinput' placeholder="这一刻的想法..." value="{{comment}}">
+	</textarea>
+    </view>
+
+    <view class="boss3">
+        <view class='line'></view>
+    </view>
+
+    <view class="boss4">
+        <view class="boss4_1">
+            <text class="small_text">评分</text>
+            <view class="stars">
+                <view wx:for="{{stars}}" wx:key="index" data-index="{{index}}" bindtap='score'>
+                    <image src="{{index >= 0 && item.flag == 1 ? item.bgImg : item.bgfImg}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="boss4_2">
+            <text class="small_text">设为私密</text>
+            <view class="body-view">
+                <switch style="zoom: .6;" checked="{{switch1Checked}}" bindchange="switch1Change" />
+            </view>
+        </view>
+
+    </view>
+
+    <view class="boss3">
+        <view class='line'></view>
+    </view>
+
+    <view class="boss2">
+        <view wx:for="{{imagelist}}" wx:for-item="item">
+            <block>
+                <image src="{{item}}" data-index="{{index}}" class="album-item" mode="aspectFill" bindtap="deleteImage"></image>
+            </block>
+        </view>
+        <view wx:if="{{imagelist.length < 6}}">
+            <image src="/image/create_img/picture.png" class="album-item" mode="aspectFill" bindtap="uploadImage"></image>
+        </view>
+    </view>
+
+    <text>\n</text>
+
+
+    <button class="btn1" bindtap="loadto">发布</button>
+
+
+</scroll-view>
