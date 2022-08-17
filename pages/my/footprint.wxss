@@ -1,5 +1,8 @@
 /* pages/footprint/footprint.wxss */
-/* pages/stars/stars.wxss */
+.footprint {
+  height: 100%;
+}
+
 /*外部容器*/
 .listview-container {
   margin: 10rpx 10rpx;
@@ -76,7 +79,7 @@
   white-space: normal;
   padding-right: 10px;
   margin-top: 5rpx;
-  margin-bottom: 5rpx;
+  /* margin-bottom: 5rpx; */
 }
   
 /*留下的评价*/
@@ -84,12 +87,75 @@
   width: 18px;
   height: 18px; 
   position: absolute; 
-  margin-left: 450rpx;
+  margin-top: 10rpx;
+  margin-left: 400rpx;
 }
 
 /*留下的评价*/
 .playlog-item .content .comment {
   font-size: 32rpx;
   line-height: 56rpx;
+  margin-top: 5rpx;
+  margin-bottom: 5rpx;
   color: rgb(121, 121, 121);
+}
+
+/* 评分部分样式 */
+.stars {
+  display: flex;
+  margin-bottom: 5rpx;
+}
+
+.star {
+  position: relative;
+  width: 45rpx;
+  height: 45rpx;
+  /* margin-right: 10rpx; */
+}
+
+/* 黄色星星 */
+.star view.icon_yellow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  height: 50rpx;
+  overflow: hidden;
+}
+
+/* 灰色星星背景 */
+.star view.icon_gray {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.star view image {
+  width: 45rpx;
+  height: 45rpx;
+  display: block;
+}
+
+/*评论图片样式*/
+.img_box{
+  width:630rpx;
+  position:relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin:0 auto;
+}
+
+.imgs{
+  /* 一行3张图片 */
+  width:33.33333333%; 
+  display: flex;
+  justify-content: center;
+  margin-bottom:20rpx;
+}
+
+.imgs image{
+  width:90%;
+  border:1px solid rgba(214, 212, 212, 0.1);
 }

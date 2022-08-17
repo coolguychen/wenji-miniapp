@@ -5,7 +5,7 @@
 </text>
 
 <!--开发者信息区域-->
-<view id="developerView">
+<view class="developerView">
     <view class="developerItemView">
         <view>开发者微信号</view>
         <view>xxx</view>

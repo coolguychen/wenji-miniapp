@@ -15,8 +15,8 @@
       </view>
       <view class="content">
       <!-- 包括记录的时间和地点的名称 -->
-        <text class="time">{{item.time}}</text>
-        <text class="location">{{item.location}}</text>
+        <text class="time">{{item.createTime}}</text>
+        <text class="location">{{item.to.name}}</text>
       </view>
     </view>
   </block>

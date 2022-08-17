@@ -75,21 +75,25 @@ Page({
     })
   },
 
-  starTab: function (ev) {
+  onCollectionTap: function (ev) {
     var collected = this.data.collected;
     //若一开始没有收藏 点击后加入收藏
     if (collected == false) {
-      //后端POST一条数据
+      //后端POST一条数据2
       //1. 输入：地点id、openid
       //2. 数据库存储“想去”对应关系（加入时间（年月日））
       wx.request({
-        url: 'url',
-        data: {
-          id: this.data.id,
-          openid: app.globalData.openid
+        url: 'http://localhost:8080/user/addToWishList',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data:{
+          openid: app.globalData.openid,
+          placeid: this.data.id
         },
         method: 'POST',
-        success(res) {
+        success(res){
+          console.log(res.data);
           wx.showToast({
             title: "收藏成功",
             duration: 1000,

@@ -43,8 +43,8 @@
             <!-- 导航轴 -->
             <view class="tool" style="width: 750rpx; height: 125rpx; display: block; box-sizing: border-box">
                 <view class="circle-img">
-                    <image wx:if="{{collected}}" catchtap='starTab' src="/image/collection.png"></image>
-                    <image wx:else catchtap='starTab' src="/image/collection-anti.png"></image>
+                    <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
+                    <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
                     <image class="nav-img" catchtap='nav' src="/image/navigation.png"></image>
                     <image wx:if="{{tick}}" catchtap='onTickTap' src="/image/hitcard.png"></image>
                     <image wx:else catchtap='onTickTap' src="/image/hitcard-anti.png"></image>

@@ -1,5 +1,9 @@
 /* pages/stars/stars.wxss */
 /*外部容器*/
+.stars {
+  height: 100%;
+}
+
 .listview-container {
   margin: 10rpx 10rpx;
   margin-bottom: 115rpx;

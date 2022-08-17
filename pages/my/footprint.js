@@ -1,4 +1,5 @@
 // pages/footprint/footprint.js
+var app = getApp();
 Page({
 
   /**
@@ -6,43 +7,74 @@ Page({
    */
   data: {
     //  输出：list，每一个对象包括：地点名、评分、打卡图片、打卡文字、时间、显示范围
-    footprintList:[{
-      time:'2022-1-1',
-      location:'常德公寓',
-      imgUrls:'',
-      comment:'好看',
-      score:'4.0',
-      isPrivate: true
-    },
-    {
-      time:'2022-8-1',
-      location:'华东师范大学',
-      imgUrls:'',
-      comment:'很好看',
-      score:'5.0',
-      isPrivate: false
-    },
-  
-  ]
+    footprintList: [],
+    //显示平均星级
+    // 星星列表
+    stars: [
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+    ],
+    imageWidth: getApp().screenWidth / 4 - 10, //图片的宽度 1：1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // wx.request({
-    //     url: 'url',
-    //     data: {
-    //       openid: app.globalData.openid,
-    //     },
-    //     method: 'POST',
-    //     header: {
-    //       "Content-Type": "applciation/json"
-    //     },
-    //     success(res){
-    //       console.log(res.data.data)
-    //     }
-    //   })
+    var that = this;
+    //获取去过的地点 
+    wx.request({
+      url: 'http://localhost:8080/user/getGoneList',
+      data: {
+        openid: app.globalData.openid,
+      },
+      method: 'GET',
+      header: {
+        "Content-Type": "applciation/json"
+      },
+      success(res) {
+        console.log(res.data.data)
+        var tmpList = res.data.data
+        var score = []
+        var starList = that.data.stars
+        //进行 数组对象合并 加上分数数组 包含int和percent
+        var obj1 = tmpList.map((item, index) => {
+          var int1 = Math.floor(item.score)
+          var percent1 = (item.score - int1) * 100 + '%'
+          score.push({int:int1, percent:percent1})
+          console.log(score)
+          return { ...item, ...score[index] };
+        });
+        //再次与stars数组合并
+        var obj2 = obj1.map((item) => {
+          item.stars = starList
+          return item;
+        });
+        console.log(obj2)
+        that.setData({
+          footprintList: obj2
+        })
+        console.log(that.data.footprintList)
+      }
+    })
   },
 
   /**
