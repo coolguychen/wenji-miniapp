@@ -1,23 +1,25 @@
 <!--pages/stars/stars.wxml-->
 <!-- 时间轴 去过的地点 -->
-<view class="listview-container">
-<!-- 遍历收藏清单 -->
-  <block wx:for="{{starList}}" wx:key="index">
-    <view class="playlog-item" >
-      <view class="dotline">
-        <!-- 竖线 -->
-        <view class="line"></view>
-        <!-- 圆点 -->
-        <view class="dot">
-        <image class="dot-image" src="/image/Shanghai1.png"></image>
+<scroll-view class="stars" scroll-y="true">
+  <view class="listview-container">
+    <!-- 遍历收藏清单 -->
+    <block wx:for="{{starList}}" wx:key="index">
+      <view class="playlog-item">
+        <view class="dotline">
+          <!-- 竖线 -->
+          <view class="line"></view>
+          <!-- 圆点 -->
+          <view class="dot">
+            <image class="dot-image" src="/image/Shanghai1.png"></image>
+          </view>
+          <!-- 时间戳 -->
         </view>
-        <!-- 时间戳 -->
+        <view class="content">
+          <!-- 包括记录的时间和地点的名称 -->
+          <text class="time">{{item.createTime}}</text>
+          <text class="location">{{item.to.name}}</text>
+        </view>
       </view>
-      <view class="content">
-      <!-- 包括记录的时间和地点的名称 -->
-        <text class="time">{{item.createTime}}</text>
-        <text class="location">{{item.to.name}}</text>
-      </view>
-    </view>
-  </block>
-</view>
+    </block>
+  </view>
+</scroll-view>

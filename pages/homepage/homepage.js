@@ -159,8 +159,6 @@ Page({
       success: function (res) {
         var latitudee = res.latitude
         var longitudee = res.longitude
-        console.log(res.longitude)
-        console.log(res.latitude)
         console.log(allMarkers)
         //赋值
         that.setData({
