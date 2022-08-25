@@ -13,7 +13,8 @@
     "pages/my/stars",
     "pages/my/footprint",
     "pages/my/suggestion",
-    "pages/makepunch/makepunch"
+    "pages/makepunch/makepunch",
+    "pages/comment/comment"
   ],
   "plugins": {
     "routePlan": {

@@ -1,0 +1,73 @@
+<!--pages/comment/comment.wxml-->
+<!-- 时间轴 去过的地点 -->
+<scroll-view class="comment" scroll-y="true">
+  <view class="listview-container">
+    <!-- 遍历我的足迹 -->
+    <block wx:for="{{comments}}" wx:key="id">
+      <view class="playlog-item">
+        <view class="dotline">
+          <!-- 竖线 -->
+          <view class="line"></view>
+          <!-- 圆点 -->
+          <view class="dot">
+            <image class="dot-image" src="/image/map3.png"></image>
+          </view>
+          <!-- 时间戳 -->
+        </view>
+        <!-- 显示未隐藏的评价 -->
+        <view class="visibility" wx:if="{{!item.private}}">
+          <view class="content">
+            <!-- 包括记录的时间和地点的名称 -->
+            <view class="infomation">
+              <image class="image_radius" src="{{item.from.avatarUrl}}" />
+              <text class="nickName">{{item.from.nickName}}</text>
+              <text class="time">{{item.createTime}}</text>
+            </view>
+            <!-- 显示打分的星级 -->
+            <view class="stars">
+              <!-- 嵌套循环 修改item名防止混淆 -->
+              <view class="star" wx:for="{{item.stars}}" wx:for-item="e" wx:key="index">
+                <!-- 整颗星星显示个数 -->
+                <view class="icon_yellow" wx:if="{{index < item.int}}" style="width: 100%;">
+                  <image src="{{e.bgfImg}}">
+                  </image>
+                </view>
+                <!-- 非整颗星星显示个数 -->
+                <view class="icon_yellow" wx:if="{{index == item.int}}" style="width: {{item.percent}};">
+                  <image src="{{e.bgfImg}}">
+                  </image>
+                </view>
+                <!-- 灰色星星背景 -->
+                <view class="icon_gray">
+                  <image src="{{e.bgImg}}"></image>
+                </view>
+              </view>
+              <!-- 评分 -->
+              <view style="font-family: ‘Times New Roman’, Times, serif;">{{item.score}}</view>
+            </view>
+            <text class="comment">{{item.comment}}</text>
+            <!-- 展示评论的图片 imgs不为空-->
+            <view class="img_box" wx:if="{{item.imgs}}">
+              <view class="imgs" wx:for="{{item.imgs}}" wx:key="index">
+              <image style="width: {{imageWidth}}px; height: {{imageWidth}}px" src='{{item}}' data-index="{{index}}" mode='widthFix' />
+            </view>
+
+
+            </view>
+
+
+            <!-- <view class="img_box">
+            <view wx:for="{{item.imgs}}" wx:for-item="item">
+              <block>
+                <image src="{{item}}" data-index="{{index}}" class="album-item" mode="aspectFill"></image>
+              </block>
+            </view>-
+          </view> -->
+
+          </view>
+        </view>
+
+      </view>
+    </block>
+  </view>
+</scroll-view>

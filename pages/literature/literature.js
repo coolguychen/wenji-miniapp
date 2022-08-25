@@ -137,7 +137,6 @@ Page({
             duration: 1000,
             icon: "success"
           })
-
         }
       })
     }
@@ -232,8 +231,11 @@ Page({
 
   },
 
-  checkUserToPlace: function () {
-
+  commentAll: function(){
+    var that = this;
+    wx.navigateTo({
+      url: '../comment/comment?id=' + that.data.id,
+    })
   },
 
   /**

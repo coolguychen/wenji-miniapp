@@ -69,4 +69,8 @@
             </view>
         </view>
     </view>
+
+    <view class='remark' bindtap="commentAll">
+    查看全部评价
+    </view>
 </scroll-view>
