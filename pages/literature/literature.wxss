@@ -1,8 +1,9 @@
 /* pages/literature/literature.wxss */
 
-.literature{
+.literature {
   height: 100%;
 }
+
 .title {
   font-size: 20px;
   margin-left: 5px;
@@ -83,6 +84,18 @@
   background-color: #fffef8;
 }
 
+.three_comments {
+  height: 95%;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  box-shadow: 1px 1px 2px rgba(211, 211, 211, 0.5);
+  border-radius: 5px;
+  border: 1px rgb(226, 226, 226);
+  margin-bottom: 20px;
+  background-color: #fffef8;
+}
+
 .tools {
   margin-top: 10rpx;
   margin-bottom: 15px;
@@ -116,12 +129,14 @@
   display: flex;
   margin: 10rpx 0;
 }
+
 .star {
   position: relative;
   width: 50rpx;
   height: 50rpx;
   margin-right: 10rpx;
 }
+
 /* 黄色星星 */
 .star view.icon_yellow {
   position: absolute;
@@ -131,6 +146,7 @@
   height: 50rpx;
   overflow: hidden;
 }
+
 /* 灰色星星背景 */
 .star view.icon_gray {
   position: absolute;
@@ -146,3 +162,84 @@
   display: block;
 }
 
+.playlog-item {
+  padding: 15px;
+  border-bottom: 1px solid #f1ecea;
+}
+
+.playlog-item .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.playlog-item .content .information {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+
+.playlog-item .content .image_radius {
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+}
+
+.playlog-item .content .nickName {
+  margin-left: 24rpx;
+  font-size: 40rpx;
+}
+
+/*标记想去的时间*/
+.playlog-item .content .time {
+  font-size: 30rpx;
+  line-height: 56rpx;
+  color: rgb(121, 121, 121);
+}
+
+/*留下的评价*/
+.playlog-item .content .comment {
+  font-size: 32rpx;
+  line-height: 56rpx;
+  margin-top: 5rpx;
+  margin-bottom: 5rpx;
+  color: rgb(121, 121, 121);
+}
+
+.img_box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+}
+
+.imgs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+}
+
+.imgs image {
+  flex-direction: column;
+  margin: 0.1rem;
+  background: white;
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
+.all_comment {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.remark {
+  font-size: 32rpx;
+  line-height: 56rpx;
+  margin-top: 5rpx;
+  margin-bottom: 5rpx;
+  color: rgb(121, 121, 121);
+}

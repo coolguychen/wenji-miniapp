@@ -34,25 +34,25 @@ Page({
     //显示平均星级
     // 星星列表
     stars: [{
-      bgImg: "/image/star_gray.png",
-      bgfImg: "/image/star_yellow.png",
-    },
-    {
-      bgImg: "/image/star_gray.png",
-      bgfImg: "/image/star_yellow.png",
-    },
-    {
-      bgImg: "/image/star_gray.png",
-      bgfImg: "/image/star_yellow.png",
-    },
-    {
-      bgImg: "/image/star_gray.png",
-      bgfImg: "/image/star_yellow.png",
-    },
-    {
-      bgImg: "/image/star_gray.png",
-      bgfImg: "/image/star_yellow.png",
-    },
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
+      {
+        bgImg: "/image/star_gray.png",
+        bgfImg: "/image/star_yellow.png",
+      },
     ],
     // 要展示的评分
     remark_num: 0.0,
@@ -79,7 +79,7 @@ Page({
   onCollectionTap: function (ev) {
     var that = this;
     var collected = that.data.collected;
-    if (app.globalData.openid == null) {
+    if (that.data.openid == null) {
       wx.showToast({
         title: '请先登录',
         icon: 'error',
@@ -144,32 +144,14 @@ Page({
       //赋值
       collected: !collected
     })
-
-    //1s后check一下 更新界面
-    setTimeout(function () {
-      //check 是否收藏
-      wx.request({
-        url: 'http://localhost:8080/main/checkUserToPlace',
-        header: {
-          'Content-Type': 'json' 
-        },
-        data: {
-          openid: app.globalData.openid,
-          placeid: that.data.id
-        },
-        method: 'GET',
-        success(res) {
-          console.log(res.data.data);
-          console.log(res.data.data.wishTo)
-        }
-      })
-    }, 1500)
   },
 
   onTickTap: function (ev) {
-    var tick = this.data.tick;
+    var that = this;
+    var tick = that.data.tick;
+    console.log(tick)
     if (tick == false) { //如果之前没有打卡过
-      if (app.globalData.openid == null) {
+      if (that.data.openid == null) {
         wx.showToast({
           title: '请先登录',
           icon: 'error',
@@ -187,12 +169,6 @@ Page({
         })
       }
 
-    } else {
-      wx.showToast({
-        title: "取消收藏",
-        duration: 1000,
-        icon: "success"
-      })
     }
     this.setData({
       tike: !tick
@@ -231,7 +207,7 @@ Page({
 
   },
 
-  commentAll: function(){
+  commentAll: function () {
     var that = this;
     wx.navigateTo({
       url: '../comment/comment?id=' + that.data.id,
@@ -261,13 +237,128 @@ Page({
               console.log('openid: ' + res.data.data.openid)
               //设置全局变量openid
               app.globalData.openid = res.data.data.openid
-              //看用户是否注册 用户名不为空 注册设为TRUE 并给hasUserInfo和name和head赋值
+              //看用户是否注册 用户名不为空 
               if (res.data.data.nickName != "" && res.data.data.nickName != null) {
                 //赋值
                 that.setData({
                   openid: app.globalData.openid
                 });
               }
+              //根据option.id动态显示数据
+              //给id与openid赋值
+              that.setData({
+                id: options.id
+              })
+              console.log('placeid = ' + that.data.id + ', openid=' + that.data.openid)
+              var imgUrls1 = ''
+              var name1 = ''
+              var address1 = ''
+              var booklist1 = ''
+              var remark_num1 = ''
+              //加载地标详情
+              wx.request({
+                url: 'http://localhost:8080/main/literature?id=' + options.id,
+                method: 'GET',
+                success(res) {
+                  console.log(res.data.data)
+                  let item = res.data.data
+                  imgUrls1 = item.picture
+                  console.log(imgUrls1)
+                  name1 = item.name
+                  address1 = item.address
+                  booklist1 = item.books
+                  //todo: 后端更新后修改该评分
+                  remark_num1 = (item.star == -1 ? '暂无评分' : item.star)
+                  var int1 = Math.floor(remark_num1); // 向下取整-得到整颗星的个数
+                  var percent1 = (remark_num1 - int1) * 100 + '%'; // 非整颗星的百分比
+                  //todo: 后端更新后修改想去，去过状态
+
+                  that.setData({
+                    imgUrls: imgUrls1,
+                    name: name1,
+                    address: address1,
+                    booklist: booklist1,
+                    remark_num: remark_num1,
+                    int: int1,
+                    percent: percent1
+                  })
+                  console.log(booklist1)
+                  console.log(that.data.booklist)
+                  console.log(that.data.int)
+                  console.log(that.data.percent)
+                }
+              })
+              //check 是否收藏 or 打卡
+              wx.request({
+                  url: 'http://localhost:8080/main/checkUserToPlace',
+                  data: {
+                    openid: that.data.openid,
+                    placeid: that.data.id
+                  },
+                  method: 'GET',
+                  success: (res) => {
+                    console.log(res.data.data);
+                    //如果已经收藏 那么collected
+                    if (res.data.data.wishTo == true) {
+                      that.setData({
+                        //赋值
+                        collected: true
+                      })
+                    } else {
+                      that.setData({
+                        //赋值
+                        collected: false
+                      })
+                    }
+                    if (res.data.data.goneTo == true) {
+                      that.setData({
+                        //赋值
+                        tick: true
+                      })
+                    } else {
+                      that.setData({
+                        //赋值
+                        tick: false
+                      })
+                    }
+                  }
+                }),
+                wx.request({
+                  url: 'http://localhost:8080/main/comment/limit',
+                  data: {
+                    placeid: options.id
+                  },
+                  method: 'GET',
+                  success(res) {
+                    console.log(res.data.data)
+                    var tmpList = res.data.data
+                    var score = []
+                    var starList = that.data.stars
+                    //进行 数组对象合并 加上分数数组 包含int和percent
+                    var obj1 = tmpList.map((item, index) => {
+                      var int1 = Math.floor(item.score)
+                      var percent1 = (item.score - int1) * 100 + '%'
+                      score.push({
+                        int: int1,
+                        percent: percent1
+                      })
+                      return {
+                        ...item,
+                        ...score[index]
+                      };
+                    });
+                    //再次与stars数组合并
+                    var obj2 = obj1.map((item) => {
+                      item.stars = starList
+                      return item;
+                    });
+                    that.setData({
+                      comments: obj2
+                    })
+                    console.log(that.data.comments)
+                  }
+                })
+
             },
             fail: function (res) {
               console.log("fail");
@@ -283,87 +374,7 @@ Page({
     })
 
     setTimeout(function () {
-      //根据option.id动态显示数据
-      //给id与openid赋值
-      that.setData({
-        id: options.id
-      })
-      console.log('placeid = ' + that.data.id + ', openid=' + that.data.openid)
-      var imgUrls1 = ''
-      var name1 = ''
-      var address1 = ''
-      var booklist1 = ''
-      var remark_num1 = ''
-      //加载地标详情
-      wx.request({
-        url: 'http://localhost:8080/main/literature?id=' + options.id,
-        method: 'GET',
-        success(res) {
-          console.log(res.data.data)
-          let item = res.data.data
-          imgUrls1 = item.picture
-          console.log(imgUrls1)
-          name1 = item.name
-          address1 = item.address
-          booklist1 = item.books
-          //todo: 后端更新后修改该评分
-          remark_num1 = 4.7
-          var int1 = Math.floor(remark_num1); // 向下取整-得到整颗星的个数
-          var percent1 = (remark_num1 - int1) * 100 + '%'; // 非整颗星的百分比
-          //todo: 后端更新后修改想去，去过状态
 
-          that.setData({
-            imgUrls: imgUrls1,
-            name: name1,
-            address: address1,
-            booklist: booklist1,
-            remark_num: remark_num1,
-            int: int1,
-            percent: percent1
-          })
-          console.log(booklist1)
-          console.log(that.data.booklist)
-          console.log(that.data.int)
-          console.log(that.data.percent)
-        }
-      })
-      //check 是否收藏 or 打卡
-      wx.request({
-        url: 'http://localhost:8080/main/checkUserToPlace',
-        data: {
-          openid: that.data.openid,
-          placeid: that.data.id
-        },
-        method: 'GET',
-        success: (res) => {
-          console.log(res.data.data);
-          //如果已经收藏 那么collected
-          if (res.data.data.wishTo == true) {
-            that.setData({
-              //赋值
-              collected: true
-            })
-          }
-          else {
-            that.setData({
-              //赋值
-              collected: false
-            })
-          }
-          if (res.data.data.goneTo == true) {
-            that.setData({
-              //赋值
-              tick: true
-            })
-          }
-          else {
-            that.setData({
-              //赋值
-              tick: false
-            })
-          }
-        }
-      })
     }, 1000)
 
   },
