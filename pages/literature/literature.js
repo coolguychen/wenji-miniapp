@@ -149,7 +149,6 @@ Page({
   onTickTap: function (ev) {
     var that = this;
     var tick = that.data.tick;
-    console.log(tick)
     if (tick == false) { //如果之前没有打卡过
       if (that.data.openid == null) {
         wx.showToast({
@@ -219,7 +218,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    //在“我的”界面登录/注册
+    //调用微信登录接口 获取openid 判断是否注册
     wx.login({
       success(res) {
         if (res.code) {
@@ -237,7 +236,7 @@ Page({
               console.log('openid: ' + res.data.data.openid)
               //设置全局变量openid
               app.globalData.openid = res.data.data.openid
-              //看用户是否注册 用户名不为空 
+              //看用户是否注册 
               if (res.data.data.nickName != "" && res.data.data.nickName != null) {
                 //赋值
                 that.setData({
@@ -372,11 +371,6 @@ Page({
         console.log("登录失败！")
       }
     })
-
-    setTimeout(function () {
-
-    }, 1000)
-
   },
 
   /**

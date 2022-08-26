@@ -3,24 +3,23 @@
 <scroll-view class="comment" scroll-y="true">
   <view class="listview-container">
     <!-- 遍历我的足迹 -->
-    <block wx:for="{{comments}}" wx:key="id">
-      <view class="playlog-item">
-        <view class="dotline">
-          <!-- 竖线 -->
-          <view class="line"></view>
-          <!-- 圆点 -->
-          <view class="dot">
-            <image class="dot-image" src="/image/map3.png"></image>
+    <block wx:if="{{hasComments}}">
+      <block wx:for="{{comments}}" wx:key="id">
+        <view class="playlog-item">
+          <view class="dotline">
+            <!-- 竖线 -->
+            <view class="line"></view>
+            <!-- 圆点 -->
+            <view class="dot">
+              <image class="dot-image" src="/image/map3.png"></image>
+            </view>
           </view>
-          <!-- 时间戳 -->
-        </view>
-        <!-- 显示未隐藏的评价 -->
-        <view class="visibility" wx:if="{{!item.private}}">
+          <!-- 显示未隐藏的评价 -->
           <view class="content">
             <!-- 包括记录的时间和地点的名称 -->
             <view class="infomation">
               <image class="image_radius" src="{{item.from.avatarUrl}}" />
-              <text class="nickName">{{item.from.nickName}}</text>
+                <text class="nickName">{{item.from.nickName}}</text>
               <text class="time">{{item.createTime}}</text>
             </view>
             <!-- 显示打分的星级 -->
@@ -49,25 +48,16 @@
             <!-- 展示评论的图片 imgs不为空-->
             <view class="img_box" wx:if="{{item.imgs}}">
               <view class="imgs" wx:for="{{item.imgs}}" wx:key="index">
-              <image style="width: {{imageWidth}}px; height: {{imageWidth}}px" src='{{item}}' data-index="{{index}}" mode='widthFix' />
+                <image src='{{item}}' data-index="{{index}}" mode='aspectFill' />
+              </view>
             </view>
-
-
-            </view>
-
-
-            <!-- <view class="img_box">
-            <view wx:for="{{item.imgs}}" wx:for-item="item">
-              <block>
-                <image src="{{item}}" data-index="{{index}}" class="album-item" mode="aspectFill"></image>
-              </block>
-            </view>-
-          </view> -->
-
           </view>
         </view>
-
-      </view>
+      </block>
+      <text class="null-remark">往下就没有了哦~</text>
+    </block>
+    <block wx:else>
+      <text class="null-remark">暂无可用评价~</text>
     </block>
   </view>
 </scroll-view>

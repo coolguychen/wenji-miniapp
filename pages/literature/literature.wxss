@@ -192,6 +192,7 @@
 
 /*标记想去的时间*/
 .playlog-item .content .time {
+  float: right;
   font-size: 30rpx;
   line-height: 56rpx;
   color: rgb(121, 121, 121);

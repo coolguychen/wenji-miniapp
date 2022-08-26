@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    comments:[],
+    comments: [],
+    hasComments: false,
     //显示平均星级
     // 星星列表
     stars: [
@@ -42,32 +43,35 @@ Page({
     var that = this;
     wx.request({
       url: 'http://localhost:8080/main/comment/all',
-      data:{
-        openid: app.globalData.openid,
+      data: {
         placeid: options.id
       },
       method: 'GET',
-      success (res) {
+      success(res) {
         console.log(res.data.data)
-        var tmpList = res.data.data
-        var score = []
-        var starList = that.data.stars
-        //进行 数组对象合并 加上分数数组 包含int和percent
-        var obj1 = tmpList.map((item, index) => {
-          var int1 = Math.floor(item.score)
-          var percent1 = (item.score - int1) * 100 + '%'
-          score.push({int:int1, percent:percent1})
-          return { ...item, ...score[index] };
-        });
-        //再次与stars数组合并
-        var obj2 = obj1.map((item) => {
-          item.stars = starList
-          return item;
-        });
-        that.setData({
-          comments: obj2
-        })
-        console.log(that.data.comments)
+        if (res.data.data.length != 0) {
+          var tmpList = res.data.data
+          var score = []
+          var starList = that.data.stars
+          //进行 数组对象合并 加上分数数组 包含int和percent
+          var obj1 = tmpList.map((item, index) => {
+            var int1 = Math.floor(item.score)
+            var percent1 = (item.score - int1) * 100 + '%'
+            score.push({ int: int1, percent: percent1 })
+            return { ...item, ...score[index] };
+          });
+          //再次与stars数组合并
+          var obj2 = obj1.map((item) => {
+            item.stars = starList
+            return item;
+          });
+          that.setData({
+            comments: obj2,
+            hasComments: true //存在评价
+          })
+          console.log(that.data.comments)
+        }
+
       }
     })
   },

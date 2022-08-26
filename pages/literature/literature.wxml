@@ -109,7 +109,7 @@
                             <!-- 展示评论的图片 imgs不为空-->
                             <view class="img_box" wx:if="{{item.imgs}}">
                                 <view class="imgs" wx:for="{{item.imgs}}" wx:key="index">
-                                    <image style="width: {{imageWidth}}px; height: {{imageWidth}}px" src='{{item}}' data-index="{{index}}" mode='aspectFill' />
+                                    <image src='{{item}}' data-index="{{index}}" mode='aspectFill' />
                                 </view>
                             </view>
                         </view>
