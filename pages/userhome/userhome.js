@@ -111,7 +111,7 @@ Page({
             wx.getUserInfo({
               success: function (res) {
                 wx.request({
-                  url: ':8080/user/register',
+                  url: 'https://www.literaturemap.top/user/register',
                   method: 'POST',
                   header: {
                     'content-type': 'application/x-www-form-urlencoded'
