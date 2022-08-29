@@ -2,60 +2,57 @@
 <!--文人故居-->
 <!-- 纵向滚动 -->
 <scroll-view class='residence' scroll-y="true">
-  <view class="residence">
-    <view>
-      <!-- 1. 地标图片 -->
-      <!--图片轮播 -->
-      <view class="box">
-        <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
-          <block wx:for="{{imgUrls}}" wx:key="id">
-            <swiper-item>
-              <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
-            </swiper-item>
-          </block>
-        </swiper>
+  <view>
+    <!-- 1. 地标图片 -->
+    <!--图片轮播 -->
+    <view class="box">
+      <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
+        <block wx:for="{{imgUrls}}" wx:key="id">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" mode="widthFix" bindload='goheight' />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!-- 2. 地点简介（地址） -->
+    <view class="information" style="margin-top: 15px;">
+      <!-- 地点名字 -->
+      <view class="title">{{name}}</view>
+      <!-- 具体位置 -->
+      <view class="text">{{address}}</view>
+      <!-- 平均星级 -->
+      <view class="stars">
+        <view class="star" wx:for="{{stars}}" wx:key="index">
+          <!-- 整颗星星显示个数 -->
+          <view class="icon_yellow" wx:if="{{index < int}}" style="width: 100%;">
+            <image src="{{item.bgfImg}}">
+            </image>
+          </view>
+          <!-- 非整颗星星显示个数 -->
+          <view class="icon_yellow" wx:if="{{index == int}}" style="width: {{percent}};">
+            <image src="{{item.bgfImg}}">
+            </image>
+          </view>
+          <!-- 灰色星星背景 -->
+          <view class="icon_gray">
+            <image src="{{item.bgImg}}"></image>
+          </view>
+        </view>
+        <!-- 评分 -->
+        <view style="font-family: ‘Times New Roman’, Times, serif;">{{remark_num}}</view>
       </view>
-      <!-- 2. 地点简介（地址） -->
-      <view class="information" style="margin-top: 15px;">
-        <!-- 地点名字 -->
-        <view class="title">{{name}}</view>
-        <!-- 具体位置 -->
-        <view class="text">{{address}}</view>
-        <!-- 平均星级 -->
-        <view class="stars">
-          <view class="star" wx:for="{{stars}}" wx:key="index">
-            <!-- 整颗星星显示个数 -->
-            <view class="icon_yellow" wx:if="{{index < int}}" style="width: 100%;">
-              <image src="{{item.bgfImg}}">
-              </image>
-            </view>
-            <!-- 非整颗星星显示个数 -->
-            <view class="icon_yellow" wx:if="{{index == int}}" style="width: {{percent}};">
-              <image src="{{item.bgfImg}}">
-              </image>
-            </view>
-            <!-- 灰色星星背景 -->
-            <view class="icon_gray">
-              <image src="{{item.bgImg}}"></image>
-            </view>
-          </view>
-          <!-- 评分 -->
-          <view style="font-family: ‘Times New Roman’, Times, serif;">{{remark_num}}</view>
+      <!-- 导航轴 -->
+      <view class="tool" style="width: 750rpx; height: 125rpx; display: block; box-sizing: border-box">
+        <view class="circle-img">
+          <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
+          <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
+          <image class="nav-img" catchtap='nav' src="/image/navigation.png"></image>
+          <image wx:if="{{tick}}" catchtap='onTickTap' src="/image/hitcard.png"></image>
+          <image wx:else catchtap='onTickTap' src="/image/hitcard-anti.png"></image>
         </view>
-        <!-- 导航轴 -->
-        <view class="tool" style="width: 750rpx; height: 125rpx; display: block; box-sizing: border-box">
-          <view class="circle-img">
-            <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
-            <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
-            <image class="nav-img" catchtap='nav' src="/image/navigation.png"></image>
-            <image wx:if="{{tick}}" catchtap='onTickTap' src="/image/hitcard.png"></image>
-            <image wx:else catchtap='onTickTap' src="/image/hitcard-anti.png"></image>
-          </view>
-          <view class="horizon"></view>
-        </view>
+        <view class="horizon"></view>
       </view>
     </view>
-
     <!-- 3. 文人在此地的作品时间轴 -->
     <view class='weui-cell-third' bindtap="authorDetail">
       <view class="page-title">
@@ -134,4 +131,6 @@
       </view>
     </view>
   </view>
+
+
 </scroll-view>

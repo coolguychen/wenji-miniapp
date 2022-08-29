@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.slide-image {
+  width: 100%;
+}
+
 .box {
   position: relative;
   left: 0rpx;
@@ -294,6 +298,18 @@
   height: 5.5rem;
 }
 
+.three_comments {
+  height: 95%;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  box-shadow: 1px 1px 2px rgba(211, 211, 211, 0.5);
+  border-radius: 5px;
+  border: 1px rgb(226, 226, 226);
+  margin-bottom: 20px;
+  background-color: #fffef8;
+}
+
 .all_comment {
   display: flex;
   flex-wrap: wrap;
@@ -310,14 +326,3 @@
   color: rgb(121, 121, 121);
 }
 
-.three_comments {
-  height: 95%;
-  width: 95%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-  box-shadow: 1px 1px 2px rgba(211, 211, 211, 0.5);
-  border-radius: 5px;
-  border: 1px rgb(226, 226, 226);
-  margin-bottom: 20px;
-  background-color: #fffef8;
-}

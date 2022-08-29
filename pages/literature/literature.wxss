@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.slide-image {
+  width: 100%;
+}
+
 .title {
   font-size: 20px;
   margin-left: 5px;

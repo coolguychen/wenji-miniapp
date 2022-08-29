@@ -8,7 +8,7 @@
             <swiper class="t-swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="{{color}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:{{height}}">
                 <block wx:for="{{imgUrls}}" wx:key="">
                     <swiper-item>
-                        <image src="{{item}}" class="slide-image swipimg" mode="widthFix" bindload='goheight' />
+                        <image src="{{item}}" class="slide-image" mode="widthFix" bindload='goheight' />
                     </swiper-item>
                 </block>
             </swiper>
