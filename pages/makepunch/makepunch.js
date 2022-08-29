@@ -59,7 +59,7 @@ Page({
                 console.log(tempFilePaths)
                 for (var i = 0; i < tempFilePaths.length; i++) {
                     wx.uploadFile({
-                        url: "http://localhost:8080/upload/photo", //后端服务器url
+                        url: "https://www.literaturemap.top/upload/photo", //后端服务器url
                         filePath: tempFilePaths[i],
                         name: 'image',
                         method: "POST",
@@ -173,7 +173,7 @@ Page({
         console.log(app.globalData.openid)
         var openid = app.globalData.openid;
         wx.request({
-            url: 'http://localhost:8080/user/addToGoneList',
+            url: 'https://www.literaturemap.top/user/addToGoneList',
             method: 'POST',
             header: {
                 'content-type': 'application/x-www-form-urlencoded'

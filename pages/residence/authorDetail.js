@@ -43,7 +43,7 @@ Page({
     console.log(options.id);
     var id = options.id;
     wx.request({
-      url: 'http://localhost:8080/main/residence?id=' + id,
+      url: 'https://www.literaturemap.top/main/residence?id=' + id,
       method: 'GET',
       data: {},
       success(res) {

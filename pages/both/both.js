@@ -52,7 +52,7 @@ Page({
     console.log('currentTab:'+this.data.currentTab)
     if (this.data.currentTab == 0) { //tab为文学地标
       wx.request({
-        url: 'http://localhost:8080/main/literature?id='+ this.data.id,
+        url: 'https://www.literaturemap.top/main/literature?id='+ this.data.id,
         method: 'GET',
         success(res) {
           console.log(res.data.data)
@@ -78,7 +78,7 @@ Page({
     } else if (this.data.currentTab == 1) { //文人故居的tab
       console.log(this.data.id)
       wx.request({
-        url: 'http://localhost:8080/main/residence?id=' + this.data.id,
+        url: 'https://www.literaturemap.top/main/residence?id=' + this.data.id,
         method: 'GET',
         data: {},
         success(res) {
@@ -146,7 +146,7 @@ Page({
     var id = options.id;
 
     wx.request({
-      url: 'http://localhost:8080/main/literature?id=' + options.id,
+      url: 'https://www.literaturemap.top/main/literature?id=' + options.id,
       method: 'GET',
       success(res) {
         console.log(res.data.data)

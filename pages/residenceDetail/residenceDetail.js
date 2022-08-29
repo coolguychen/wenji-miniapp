@@ -26,7 +26,7 @@ Page({
     console.log(options);
     var bookID = options.bookID;
     wx.request({
-      url: 'http://localhost:8080/main/book/residence?id=' + bookID,
+      url: 'https://www.literaturemap.top/main/book/residence?id=' + bookID,
       method: 'GET',
       data: {},
       success(res) {

@@ -96,7 +96,7 @@ Page({
         //1. 输入：地点id、openid
         //2. 数据库存储“想去”对应关系（加入时间（年月日））
         wx.request({
-          url: 'http://localhost:8080/user/addToWishList',
+          url: 'https://www.literaturemap.top/user/addToWishList',
           header: {
             'content-type': 'application/x-www-form-urlencoded'
           },
@@ -120,7 +120,7 @@ Page({
     //否则 取消收藏 后端list中删除该项
     else {
       wx.request({
-        url: 'http://localhost:8080/user/deleteFromWishList',
+        url: 'https://www.literaturemap.top/user/deleteFromWishList',
         data: {
           openid: app.globalData.openid,
           placeid: that.data.id
@@ -179,7 +179,7 @@ Page({
     var id = that.data.id;
     wx.request({
       //根据id获取经纬度，导航至目的地
-      url: 'http://localhost:8080/main/location?id=' + id,
+      url: 'https://www.literaturemap.top/main/location?id=' + id,
       method: 'GET',
       data: {},
       success(res) {
@@ -223,7 +223,7 @@ Page({
       success(res) {
         if (res.code) {
           wx.request({
-            url: 'http://localhost:8080/user/login',
+            url: 'https://www.literaturemap.top/user/login',
             data: {
               code: res.code,
             },
@@ -256,7 +256,7 @@ Page({
               var remark_num1 = ''
               //加载地标详情
               wx.request({
-                url: 'http://localhost:8080/main/literature?id=' + options.id,
+                url: 'https://www.literaturemap.top/main/literature?id=' + options.id,
                 method: 'GET',
                 success(res) {
                   console.log(res.data.data)
@@ -284,7 +284,7 @@ Page({
               })
               //check 是否收藏 or 打卡
               wx.request({
-                url: 'http://localhost:8080/main/checkUserToPlace',
+                url: 'https://www.literaturemap.top/main/checkUserToPlace',
                 data: {
                   openid: that.data.openid,
                   placeid: that.data.id
@@ -318,7 +318,7 @@ Page({
                 }
               }),
                 wx.request({
-                  url: 'http://localhost:8080/main/comment/limit',
+                  url: 'https://www.literaturemap.top/main/comment/limit',
                   data: {
                     placeid: options.id
                   },

@@ -32,7 +32,7 @@ Page({
       success(res) {
         if (res.code) {
           wx.request({
-            url: 'http://localhost:8080/user/login',
+            url: 'https://www.literaturemap.top/user/login',
             data: {
               code: res.code,
             },
@@ -111,7 +111,7 @@ Page({
             wx.getUserInfo({
               success: function (res) {
                 wx.request({
-                  url: 'http://localhost:8080/user/register',
+                  url: ':8080/user/register',
                   method: 'POST',
                   header: {
                     'content-type': 'application/x-www-form-urlencoded'

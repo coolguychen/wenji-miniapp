@@ -42,7 +42,7 @@ Page({
   onLoad(options) {
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/main/comment/all',
+      url: 'https://www.literaturemap.top/main/comment/all',
       data: {
         placeid: options.id
       },

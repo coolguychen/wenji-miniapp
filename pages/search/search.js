@@ -65,7 +65,7 @@ Page({
     var myMarker = [];
     console.log(key)
     wx.request({
-      url: 'http://localhost:8080/main/marker?' + 'name=' + key + '&' + 'option=' + type,
+      url: 'https://www.literaturemap.top/main/marker?' + 'name=' + key + '&' + 'option=' + type,
       method: 'GET',
       //重新渲染markers, 显示搜索出来的marker
       success(res) {
@@ -154,7 +154,7 @@ Page({
     //console.log(e.markerId);
     let type = -1;
     wx.request({
-      url: 'http://localhost:8080/main/type?id=' + e.markerId,
+      url: 'https://www.literaturemap.top/main/type?id=' + e.markerId,
       method: 'GET',
       success(res) {
         //console.log(res.data.data)

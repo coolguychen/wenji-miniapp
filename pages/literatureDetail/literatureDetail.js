@@ -25,7 +25,7 @@ Page({
         console.log(options)
         var that = this
         wx.request({
-          url: 'http://localhost:8080/main//book/literature?id_works='+options.bookId+'&id_place='+options.placeId,
+          url: 'https://www.literaturemap.top/main//book/literature?id_works='+options.bookId+'&id_place='+options.placeId,
           method: "GET",
           success(res){
               let answer=res.data.data

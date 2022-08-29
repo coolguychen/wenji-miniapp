@@ -19,7 +19,7 @@ Page({
     // a. 输入：用户的openid
     // b. 输出：想去的list, 每一个对象由加入想去的时间（年月日）和对应文学地点组成。
     wx.request({
-      url: 'http://localhost:8080/user/getWishList',
+      url: 'https://www.literaturemap.top/user/getWishList',
       data: {
         openid: app.globalData.openid,
       },

@@ -57,7 +57,7 @@ Page({
     //console.log(e.markerId);
     let type = -1;
     wx.request({
-      url: 'http://localhost:8080/main/type?id=' + e.markerId,
+      url: 'https://www.literaturemap.top/main/type?id=' + e.markerId,
       method: 'GET',
       success(res) {
         //console.log(res.data.data)
@@ -85,10 +85,8 @@ Page({
     //获取全部markers
     let myMarker = [];
     wx.request({
-      url: 'http://localhost:8080/main/all',
+      url: 'https://www.literaturemap.top/main/all',
       method: 'GET',
-      data: {
-      },
       success(res) {
         console.log(res.data)
         for (var i = 0; i < res.data.data.length; i++) {

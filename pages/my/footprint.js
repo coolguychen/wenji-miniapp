@@ -42,7 +42,7 @@ Page({
     var that = this;
     //获取去过的地点 
     wx.request({
-      url: 'http://localhost:8080/user/getGoneList',
+      url: 'https://www.literaturemap.top/user/getGoneList',
       data: {
         openid: app.globalData.openid,
       },
