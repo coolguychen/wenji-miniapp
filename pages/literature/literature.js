@@ -9,9 +9,9 @@ Page({
     id: '', //地址id
     openid: '', //用户id
     type: 'landmark',
-    imgUrls: [
-
-    ],
+    imgUrls: [],
+    collected: false,
+    tick: false, //是否已经打卡
     name: '',
     address: '',
     booklist: [
@@ -29,30 +29,27 @@ Page({
     circular: true,
     //swiper高度
     height: '',
-
-
-    //显示平均星级
     // 星星列表
     stars: [{
-        bgImg: "/image/star_gray.png",
-        bgfImg: "/image/star_yellow.png",
-      },
-      {
-        bgImg: "/image/star_gray.png",
-        bgfImg: "/image/star_yellow.png",
-      },
-      {
-        bgImg: "/image/star_gray.png",
-        bgfImg: "/image/star_yellow.png",
-      },
-      {
-        bgImg: "/image/star_gray.png",
-        bgfImg: "/image/star_yellow.png",
-      },
-      {
-        bgImg: "/image/star_gray.png",
-        bgfImg: "/image/star_yellow.png",
-      },
+      bgImg: "/image/star_gray.png",
+      bgfImg: "/image/star_yellow.png",
+    },
+    {
+      bgImg: "/image/star_gray.png",
+      bgfImg: "/image/star_yellow.png",
+    },
+    {
+      bgImg: "/image/star_gray.png",
+      bgfImg: "/image/star_yellow.png",
+    },
+    {
+      bgImg: "/image/star_gray.png",
+      bgfImg: "/image/star_yellow.png",
+    },
+    {
+      bgImg: "/image/star_gray.png",
+      bgfImg: "/image/star_yellow.png",
+    },
     ],
     // 要展示的评分
     remark_num: 0.0,
@@ -79,44 +76,46 @@ Page({
   onCollectionTap: function (ev) {
     var that = this;
     var collected = that.data.collected;
-    if (that.data.openid == null) {
-      wx.showToast({
-        title: '请先登录',
-        icon: 'error',
-        success: function () {
-          setTimeout(function () {
-            wx.switchTab({
-              url: '../userhome/userhome',
-            })
-          }, 1500);
-        }
-      })
-    }
-
-    //若一开始没有收藏 点击后加入收藏
+    //若一开始没有收藏 先判断是否注册过 点击后加入收藏
     if (collected == false) {
-      //后端POST一条数据2
-      //1. 输入：地点id、openid
-      //2. 数据库存储“想去”对应关系（加入时间（年月日））
-      wx.request({
-        url: 'http://localhost:8080/user/addToWishList',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        data: {
-          openid: app.globalData.openid,
-          placeid: that.data.id
-        },
-        method: 'POST',
-        success(res) {
-          console.log("加入收藏成功")
-          wx.showToast({
-            title: "收藏成功",
-            duration: 1000,
-            icon: "success"
-          })
-        }
-      })
+      if (that.data.openid === '') {
+        wx.showToast({
+          title: '请先登录',
+          icon: 'error',
+          success: function () {
+            setTimeout(function () {
+              wx.switchTab({
+                url: '../userhome/userhome',
+              })
+            }, 1500);
+          }
+        })
+      }
+      else {
+        //后端POST一条数据
+        //1. 输入：地点id、openid
+        //2. 数据库存储“想去”对应关系（加入时间（年月日））
+        wx.request({
+          url: 'http://localhost:8080/user/addToWishList',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            openid: app.globalData.openid,
+            placeid: that.data.id
+          },
+          method: 'POST',
+          success(res) {
+            console.log("加入收藏成功")
+            wx.showToast({
+              title: "收藏成功",
+              duration: 1000,
+              icon: "success"
+            })
+          }
+        })
+      }
+
     }
     //否则 取消收藏 后端list中删除该项
     else {
@@ -146,11 +145,12 @@ Page({
     })
   },
 
+
   onTickTap: function (ev) {
     var that = this;
     var tick = that.data.tick;
     if (tick == false) { //如果之前没有打卡过
-      if (that.data.openid == null) {
+      if (that.data.openid === '') {
         wx.showToast({
           title: '请先登录',
           icon: 'error',
@@ -271,7 +271,6 @@ Page({
                   var int1 = Math.floor(remark_num1); // 向下取整-得到整颗星的个数
                   var percent1 = (remark_num1 - int1) * 100 + '%'; // 非整颗星的百分比
                   //todo: 后端更新后修改想去，去过状态
-
                   that.setData({
                     imgUrls: imgUrls1,
                     name: name1,
@@ -281,47 +280,43 @@ Page({
                     int: int1,
                     percent: percent1
                   })
-                  console.log(booklist1)
-                  console.log(that.data.booklist)
-                  console.log(that.data.int)
-                  console.log(that.data.percent)
                 }
               })
               //check 是否收藏 or 打卡
               wx.request({
-                  url: 'http://localhost:8080/main/checkUserToPlace',
-                  data: {
-                    openid: that.data.openid,
-                    placeid: that.data.id
-                  },
-                  method: 'GET',
-                  success: (res) => {
-                    console.log(res.data.data);
-                    //如果已经收藏 那么collected
-                    if (res.data.data.wishTo == true) {
-                      that.setData({
-                        //赋值
-                        collected: true
-                      })
-                    } else {
-                      that.setData({
-                        //赋值
-                        collected: false
-                      })
-                    }
-                    if (res.data.data.goneTo == true) {
-                      that.setData({
-                        //赋值
-                        tick: true
-                      })
-                    } else {
-                      that.setData({
-                        //赋值
-                        tick: false
-                      })
-                    }
+                url: 'http://localhost:8080/main/checkUserToPlace',
+                data: {
+                  openid: that.data.openid,
+                  placeid: that.data.id
+                },
+                method: 'GET',
+                success: (res) => {
+                  console.log(res.data.data);
+                  //如果已经收藏 那么collected
+                  if (res.data.data.wishTo == true) {
+                    that.setData({
+                      //赋值
+                      collected: true
+                    })
+                  } else {
+                    that.setData({
+                      //赋值
+                      collected: false
+                    })
                   }
-                }),
+                  if (res.data.data.goneTo == true) {
+                    that.setData({
+                      //赋值
+                      tick: true
+                    })
+                  } else {
+                    that.setData({
+                      //赋值
+                      tick: false
+                    })
+                  }
+                }
+              }),
                 wx.request({
                   url: 'http://localhost:8080/main/comment/limit',
                   data: {
@@ -370,6 +365,21 @@ Page({
       fail(res) {
         console.log("登录失败！")
       }
+    })
+  },
+
+
+  /**
+   * 点击书籍列表中元素进行跳转
+   */
+  toBookDetail: function (e) {
+    console.log(e)
+    let bookId = e.currentTarget.dataset.idx
+    let placeId = this.data.id
+    console.log(bookId)
+    console.log(placeId)
+    wx.navigateTo({
+      url: '../literatureDetail/literatureDetail?bookId=' + bookId + '&placeId=' + placeId
     })
   },
 
@@ -422,17 +432,4 @@ Page({
 
   },
 
-  /**
-   * 点击书籍列表中元素进行跳转
-   */
-  toBookDetail: function (e) {
-    console.log(e)
-    let bookId = e.currentTarget.dataset.idx
-    let placeId = this.data.id
-    console.log(bookId)
-    console.log(placeId)
-    wx.navigateTo({
-      url: '../literatureDetail/literatureDetail?bookId=' + bookId + '&placeId=' + placeId
-    })
-  }
 })

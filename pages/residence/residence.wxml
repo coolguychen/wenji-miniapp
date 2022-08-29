@@ -21,12 +21,35 @@
         <view class="title">{{name}}</view>
         <!-- 具体位置 -->
         <view class="text">{{address}}</view>
-
+        <!-- 平均星级 -->
+        <view class="stars">
+          <view class="star" wx:for="{{stars}}" wx:key="index">
+            <!-- 整颗星星显示个数 -->
+            <view class="icon_yellow" wx:if="{{index < int}}" style="width: 100%;">
+              <image src="{{item.bgfImg}}">
+              </image>
+            </view>
+            <!-- 非整颗星星显示个数 -->
+            <view class="icon_yellow" wx:if="{{index == int}}" style="width: {{percent}};">
+              <image src="{{item.bgfImg}}">
+              </image>
+            </view>
+            <!-- 灰色星星背景 -->
+            <view class="icon_gray">
+              <image src="{{item.bgImg}}"></image>
+            </view>
+          </view>
+          <!-- 评分 -->
+          <view style="font-family: ‘Times New Roman’, Times, serif;">{{remark_num}}</view>
+        </view>
+        <!-- 导航轴 -->
         <view class="tool" style="width: 750rpx; height: 125rpx; display: block; box-sizing: border-box">
           <view class="circle-img">
             <image wx:if="{{collected}}" catchtap='onCollectionTap' src="/image/collection.png"></image>
             <image wx:else catchtap='onCollectionTap' src="/image/collection-anti.png"></image>
-            <image class="nav-img" catchtap='nav' src="/image/导航.png"></image>
+            <image class="nav-img" catchtap='nav' src="/image/navigation.png"></image>
+            <image wx:if="{{tick}}" catchtap='onTickTap' src="/image/hitcard.png"></image>
+            <image wx:else catchtap='onTickTap' src="/image/hitcard-anti.png"></image>
           </view>
           <view class="horizon"></view>
         </view>
@@ -55,9 +78,60 @@
             <view class='weui-cell-name'>《{{item.name}}》</view>
             <view class='weui-cell-event'>{{item.preview}}</view>
           </view>
-
         </view>
       </view>
     </block>
+    <!-- 4. 显示三条评价 -->
+    <view class="three_comments">
+      <block wx:for="{{comments}}" wx:key="id">
+        <view class="playlog-item">
+          <!-- 显示未隐藏的评价 -->
+          <view>
+            <view class="content">
+              <!-- 包括记录的时间和地点的名称 -->
+              <view class="infomation">
+                <image class="image_radius" src="{{item.from.avatarUrl}}" />
+                <text class="nickName">{{item.from.nickName}}</text>
+                <text class="time">{{item.createTime}}</text>
+
+              </view>
+              <!-- 显示打分的星级 -->
+              <view class="stars">
+                <!-- 嵌套循环 修改item名防止混淆 -->
+                <view class="star" wx:for="{{item.stars}}" wx:for-item="e" wx:key="index">
+                  <!-- 整颗星星显示个数 -->
+                  <view class="icon_yellow" wx:if="{{index < item.int}}" style="width: 100%;">
+                    <image src="{{e.bgfImg}}">
+                    </image>
+                  </view>
+                  <!-- 非整颗星星显示个数 -->
+                  <view class="icon_yellow" wx:if="{{index == item.int}}" style="width: {{item.percent}};">
+                    <image src="{{e.bgfImg}}">
+                    </image>
+                  </view>
+                  <!-- 灰色星星背景 -->
+                  <view class="icon_gray">
+                    <image src="{{e.bgImg}}"></image>
+                  </view>
+                </view>
+                <!-- 评分 -->
+                <view style="font-family: ‘Times New Roman’, Times, serif;">{{item.score}}</view>
+              </view>
+              <text class="comment">{{item.comment}}</text>
+              <!-- 展示评论的图片 imgs不为空-->
+              <view class="img_box" wx:if="{{item.imgs}}">
+                <view class="imgs" wx:for="{{item.imgs}}" wx:key="index">
+                  <image src='{{item}}' data-index="{{index}}" mode='aspectFill' />
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class="all_comment">
+        <view class='remark' bindtap="commentAll">查看全部评价</view>
+        <image style="width: 30rpx; height: 30rpx;" src="/image/jiantou.png"></image>
+      </view>
+    </view>
   </view>
 </scroll-view>

@@ -24,7 +24,7 @@
           <text class="location">{{item.to.name}}</text>
           <!-- 平均星级 -->
           <view class="stars">
-          <!-- 嵌套循环 修改item名防止混淆 -->
+            <!-- 嵌套循环 修改item名防止混淆 -->
             <view class="star" wx:for="{{item.stars}}" wx:for-item="e" wx:key="index">
               <!-- 整颗星星显示个数 -->
               <view class="icon_yellow" wx:if="{{index < item.int}}" style="width: 100%;">
@@ -46,21 +46,11 @@
           </view>
           <text class="comment">{{item.comment}}</text>
           <!-- 展示评论的图片 -->
-          <view class="img_box">
+          <view class="img_box" wx:if="{{item.imgs}}">
             <view class="imgs" wx:for="{{item.imgs}}" wx:key="index">
-              <image style="width: {{imageWidth}}px; height: {{imageWidth}}px" src='{{item}}' data-index="{{index}}" mode='widthFix' />
+              <image src='{{item}}' data-index="{{index}}" mode='aspectFill' />
             </view>
           </view>
-
-
-          <!-- <view class="img_box">
-            <view wx:for="{{item.imgs}}" wx:for-item="item">
-              <block>
-                <image src="{{item}}" data-index="{{index}}" class="album-item" mode="aspectFill"></image>
-              </block>
-            </view>-
-          </view> -->
-
         </view>
       </view>
     </block>

@@ -9,6 +9,7 @@ Page({
     latitude: '',
     isSelect: false,//展示类型？
     types: ['人名', '地名', '书名'],//搜索类型
+    key:'',
     type: "",
     show: false,
     markers: [],
@@ -31,10 +32,16 @@ Page({
 
   //键盘输入时实时调用搜索方法
   input(e) {
+    var that = this;
+    //获取键盘输入的值
+    that.setData({
+      key: e.detail.value
+    })
   },
 
   //点击完成按钮时触发
   confirm(e) {
+    var that = this;
     console.log('点击了搜索')
     var type = this.data.type;
     console.log(type);
@@ -49,24 +56,20 @@ Page({
     else if (type == '地名') type = '1';
     else if (type == '书名') type = '2';
     //显示搜索结果
-    this.search(type, e.detail.value)
-    //将搜索到的marker置于地图中间
-    this.centerMarker();
-    console.log(this.data.center);
+    this.search(type, that.data.key)
   },
 
   search(type, key) {
     var that = this;
     //从本地缓存中异步获取指定 key 的内容
     var myMarker = [];
+    console.log(key)
     wx.request({
       url: 'http://localhost:8080/main/marker?' + 'name=' + key + '&' + 'option=' + type,
       method: 'GET',
-      data: {
-      },
       //重新渲染markers, 显示搜索出来的marker
       success(res) {
-        console.log(res.data)
+        console.log(res.data.data)
         if (res.data.data.length === 0) {
           console.log('暂无该结果！')
           //提示暂无搜索结果
@@ -141,16 +144,6 @@ Page({
     mapCtx.moveToLocation();
   },
 
-  /**
-   * 结果的marker显示在地图中间
-   * @param {*} e 
-   */
-  centerMarker: function () {
-    console.log(this.data.center)
-    let Id = this.data.mapId
-    var mapCtx = wx.createMapContext(Id);
-    mapCtx.moveToLocation();
-  },
 
   /**
  * marker点击事件
