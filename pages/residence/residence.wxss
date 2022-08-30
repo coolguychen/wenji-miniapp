@@ -189,7 +189,7 @@
   margin-top: 5px;
 }
 
-.weui-cell-list .img {
+.weui-cell-list .img .minimg{
   position: absolute;
   width: 50rpx;
   height: 50rpx;
