@@ -19,9 +19,9 @@ Page({
     controls: [
       {
         id: 1,
-        iconPath: '/image/marker1.png',
+        iconPath: '/image/nowLocation.png',
         position: {
-          left: 15,
+          left: 10,
           top: 500,
           width: 40,
           height: 40
