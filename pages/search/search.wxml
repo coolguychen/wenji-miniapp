@@ -5,7 +5,7 @@
     <!-- 通过点击事件改变图片的旋转角度、自定义下拉框的高度 -->
     <view class="value" bindtap="select">
       <view style="display: inline-block; width: 115rpx; height: 71rpx; box-sizing: border-box">{{type!=''?type:'请选择'}}</view>
-      <image src="/image/下拉.png" class="sanjiao" style="width: 40rpx; height:40rpx; display: inline-block; box-sizing: border-box" />
+      <image src="/image/xiala.png" class="sanjiao" style="width: 40rpx; height: 40rpx; display: inline-block; box-sizing: border-box; position: relative; top: 10rpx" />
       <!-- select -->
       <view class="select" style="{{isSelect?'height:'+60*types.length+'rpx;':'border:0'}}">
         <view class="type" catchtap="getType" wx:for="{{types}}" data-type="{{item}}" wx:key="type">{{item}}</view>

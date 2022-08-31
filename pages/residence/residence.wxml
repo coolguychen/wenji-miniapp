@@ -66,7 +66,7 @@
     <block wx:for="{{books}}" wx:key="*this">
       <view class='weui-cell-list'>
         <view class="img">
-          <image class="minimg" mode="asceptFit" src="/image/书籍.png" />
+          <image class="minimg" mode="asceptFit" src="/image/book.png" />
         </view>
         <view class='weui-cell-line' bindtap="goBook" data-bookid="{{item.id}}">
           <view class="content">

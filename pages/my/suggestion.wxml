@@ -8,15 +8,15 @@
 <view class="developerView">
     <view class="developerItemView">
         <view>开发者微信号</view>
-        <view>xxx</view>
+        <view>  wenji-miniapp</view>
     </view>
     <view class="developerItemView">
         <view>开发者邮箱</view>
-        <view>wenji@163.com</view>
+        <view>  wenji@163.com</view>
     </view>
     <view class="developerItemView">
         <view>项目地址</view>
-        <view>xxx.com</view>
+        <view>  https://gitee.com/coolguychen/wenji-miniapp</view>
     </view>
 </view>
 
