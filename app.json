@@ -54,5 +54,6 @@
       }
     ],
     "position": "bottom"
-  }
+  },
+  "requiredPrivateInfos": ["getLocation"]
 }
